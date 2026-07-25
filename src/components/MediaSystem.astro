@@ -1,0 +1,551 @@
+---
+import Icon from "./Icon.astro";
+
+const ratios = [
+  { cls: "ratio-16-9", name: "Landscape", val: "16:9", use: "Product & scene" },
+  { cls: "ratio-3-2", name: "Editorial", val: "3:2", use: "Photography" },
+  { cls: "ratio-4-3", name: "Technical", val: "4:3", use: "Figures & diagrams" },
+  { cls: "ratio-1-1", name: "Square", val: "1:1", use: "Detail & grid" },
+  { cls: "ratio-4-5", name: "Portrait", val: "4:5", use: "Vertical detail" },
+  { cls: "ratio-banner", name: "Wide banner", val: "2.4:1", use: "Section headers" },
+];
+
+const favor = [
+  "Documentary & architectural imagery",
+  "Close-up technical detail, texture, scale",
+  "Product interface captures & annotated screenshots",
+  "Research diagrams, schematics, data visualizations",
+  "Abstract composition with restrained color",
+];
+const avoid = [
+  "Generic stock & smiling office teams",
+  "Artificially futuristic AI, glowing brains, humanoid robots",
+  "Neon circuitry, holograms, decorative 3D blobs",
+  "Heavy filters, duotones, neon grading",
+  "Images used only to fill empty space",
+];
+---
+
+<div class="container" id="media">
+  {/* ============================ IMAGE DIRECTION ==================== */}
+  <section class="section" id="image-direction">
+    <div class="section-head">
+      <span class="section-index">23</span>
+      <div><span class="eyebrow">Visual assets</span><h2 class="h1 mt-2">Images & figures</h2></div>
+    </div>
+    <p class="body reading muted" style="margin-bottom:var(--space-8)">
+      Use images and figures as structured editorial content — to support explanation, evidence,
+      product understanding, or technical storytelling. Every visual has a clear purpose; none is
+      decorative filler.
+    </p>
+
+    <div class="grid-2" style="align-items:start;">
+      <div class="panel" style="padding:var(--space-6)">
+        <span class="label" style="color:var(--success)">Favor</span>
+        <ul class="rule-list mt-4">
+          {favor.map((f) => (
+            <li style="display:flex;gap:8px;align-items:flex-start;">
+              <Icon name="check" size={16} class="ok" /> {f}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="panel" style="padding:var(--space-6)">
+        <span class="label" style="color:var(--error)">Avoid</span>
+        <ul class="rule-list mt-4">
+          {avoid.map((a) => (
+            <li style="display:flex;gap:8px;align-items:flex-start;">
+              <Icon name="x" size={16} class="no" /> {a}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="meta-row mt-8">
+      <div class="cell"><span class="k">Corners</span><span class="v">0–4px</span></div>
+      <div class="cell"><span class="k">Border</span><span class="v">1px · rgba(26,27,28,.12)</span></div>
+      <div class="cell"><span class="k">Shadow</span><span class="v">none</span></div>
+      <div class="cell"><span class="k">Alignment</span><span class="v">to page grid</span></div>
+      <div class="cell"><span class="k">Full-bleed</span><span class="v">sparingly</span></div>
+    </div>
+    <p class="caption mt-4">
+      Images sit flush with adjacent rules and columns — square or rectangular, thin-bordered when
+      separation is needed, never floating rounded cards with heavy drop shadows.
+    </p>
+  </section>
+
+  {/* ============================ ASPECT RATIOS ==================== */}
+  <section class="section" id="ratios">
+    <div class="section-head">
+      <span class="section-index">24</span>
+      <div><span class="eyebrow">Visual assets</span><h2 class="h1 mt-2">Image aspect ratios</h2></div>
+    </div>
+    <p class="body reading muted" style="margin-bottom:var(--space-8)">
+      A small, fixed set of ratios. Choose by content — never force every image into one shape.
+    </p>
+    <div class="ratio-grid">
+      {ratios.map((r) => (
+        <div>
+          <div class={`media ${r.cls}`}>
+            <img src="/assets/media/infrastructure.svg" alt="" />
+          </div>
+          <div class="ratio-meta">
+            <span class="body-sm" style="font-weight:var(--fw-medium)">{r.name}</span>
+            <span class="mono caption">{r.val}</span>
+          </div>
+          <span class="caption">{r.use}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {/* ============================ FIGURES ==================== */}
+  <section class="section" id="figures">
+    <div class="section-head">
+      <span class="section-index">25</span>
+      <div><span class="eyebrow">Visual assets</span><h2 class="h1 mt-2">Figures</h2></div>
+    </div>
+    <p class="body reading muted" style="margin-bottom:var(--space-8)">
+      Treat diagrams, charts, screenshots, and visual explanations as formal figures with a
+      consistent structure: label, title, visual, caption, and source.
+    </p>
+
+    {/* Full-width editorial figure */}
+    <figure class="figure">
+      <span class="fig-label">Fig. 01</span>
+      <span class="fig-title">Answer-engine ingestion, from crawl to grounded response</span>
+      <div class="media ratio-banner">
+        <img src="/assets/media/strata.svg" alt="Layered schematic showing content passing through ingestion stages into a served answer layer." />
+      </div>
+      <figcaption>
+        Each layer is generated at deploy time from clean static HTML. Notice how the blue stratum
+        marks the retrieval boundary between stored content and live answers.
+      </figcaption>
+      <span class="fig-source">Source — answer.cloud platform architecture, 2026</span>
+    </figure>
+
+    {/* Two-column text + image + narrow supporting */}
+    <div class="text-figure mt-12">
+      <div>
+        <span class="eyebrow">Two-column figure</span>
+        <h3 class="h3 mt-2">Text beside imagery</h3>
+        <p class="body muted mt-3 reading">
+          The editorial default: a reading column paired with a supporting figure of equal weight.
+          The figure keeps a natural proportion and aligns to the same baseline as the text.
+        </p>
+        <a class="link-arrow mt-4" href="#figures">See figure anatomy <Icon name="arrow" size={14} class="arrow" /></a>
+      </div>
+      <figure class="figure">
+        <div class="media ratio-3-2">
+          <img src="/assets/media/contour.svg" alt="Topographic contour field with one highlighted iso-line." />
+        </div>
+        <figcaption>Editorial landscape · 3:2 · natural color retained.</figcaption>
+      </figure>
+    </div>
+
+    <div class="text-figure narrow-media mt-12">
+      <figure class="figure">
+        <span class="fig-label">Fig. 02</span>
+        <span class="fig-title">Anatomy of a figure</span>
+        <div class="media ratio-4-3" style="background:var(--bg-gray)">
+          <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="20" y="20" width="140" height="10" rx="2" fill="#667085" opacity="0.5"/>
+            <rect x="20" y="40" width="240" height="14" rx="2" fill="#1a1b1c" opacity="0.75"/>
+            <rect x="20" y="72" width="360" height="150" fill="#ffffff" stroke="rgba(26,27,28,.16)"/>
+            <line x1="40" y1="150" x2="360" y2="150" stroke="rgba(26,27,28,.12)"/>
+            <path d="M40 170 L120 140 L200 155 L280 110 L360 96" fill="none" stroke="#0058ef" stroke-width="2"/>
+            <rect x="20" y="238" width="300" height="8" rx="2" fill="#667085" opacity="0.4"/>
+            <rect x="20" y="254" width="180" height="8" rx="2" fill="#667085" opacity="0.4"/>
+          </svg>
+        </div>
+        <figcaption>Label, title, visual, caption, source — a fixed hierarchy for every figure.</figcaption>
+      </figure>
+      <div>
+        <span class="label">Structure</span>
+        <div class="anatomy mt-4">
+          <div class="anatomy-row"><span class="fig-label" style="margin:0">Fig. 00</span><span class="caption">Label · 11–12px · uppercase · muted</span></div>
+          <div class="anatomy-row"><span class="body-sm" style="font-weight:var(--fw-medium)">Descriptive title</span><span class="caption">14–16px · medium · ink</span></div>
+          <div class="anatomy-row"><span class="caption" style="color:var(--text-secondary)">Concise caption of what to notice</span><span class="caption">12–14px · muted · ≤62ch</span></div>
+          <div class="anatomy-row"><span class="mono caption">Source / attribution</span><span class="caption">mono · caption</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ============================ SCREENSHOTS & ANNOTATIONS ==================== */}
+  <section class="section" id="annotations">
+    <div class="section-head">
+      <span class="section-index">26</span>
+      <div><span class="eyebrow">Visual assets</span><h2 class="h1 mt-2">Screenshots & annotations</h2></div>
+    </div>
+    <p class="body reading muted" style="margin-bottom:var(--space-8)">
+      Show realistic interface states with enough surrounding UI to stay understandable. Annotate
+      with numbered markers, thin leader lines, and small labels — never oversized arrows or
+      colorful callout boxes. Use a browser frame only when the environment itself matters.
+    </p>
+
+    <figure class="figure">
+      <span class="fig-label">Fig. 03</span>
+      <span class="fig-title">Annotated deploy overview</span>
+      <div class="screenshot">
+        <div class="chrome">
+          <span class="dots"><span></span><span></span><span></span></span>
+          <span class="addr">app.answer.cloud/sites/acme-research/deploys</span>
+        </div>
+        <div class="shot-body">
+          <div class="row" style="justify-content:space-between;align-items:flex-start">
+            <div>
+              <span class="eyebrow">Deploy dpl_8f2a1</span>
+              <h4 class="h4 mt-2">acme-research</h4>
+            </div>
+            <span class="badge badge-success annot-anchor-1"><span class="status-dot"></span>Live</span>
+          </div>
+          <div class="metric-grid mt-6" style="border:1px solid var(--border-subtle);grid-template-columns:repeat(3,1fr)">
+            <div class="metric annot-anchor-3"><div class="k">Live pages</div><div class="v">1,204</div></div>
+            <div class="metric"><div class="k">Warnings</div><div class="v">2</div></div>
+            <div class="metric"><div class="k">Chat p50</div><div class="v" style="font-size:20px">312ms</div></div>
+          </div>
+          <div class="row mt-6" style="justify-content:flex-end">
+            <button class="btn btn-secondary btn-sm" type="button">View log</button>
+            <button class="btn btn-primary btn-sm annot-anchor-2" type="button">Configure widget</button>
+          </div>
+
+          <div class="annot-layer">
+            <span class="annot" style="top:14px;right:18px">1</span>
+            <span class="annot" style="bottom:20px;right:24px">2</span>
+            <span class="annot secondary" style="top:96px;left:24px">3</span>
+          </div>
+        </div>
+      </div>
+      <ol class="annot-list">
+        <li><span class="n">1</span><span><strong>Status</strong> — deploy reached <span class="mono">live</span>; the answer-engine layer is regenerated.</span></li>
+        <li><span class="n">2</span><span><strong>Primary action</strong> — theme and configure the chat widget with the deployed stylesheet.</span></li>
+        <li class="secondary"><span class="n">3</span><span><strong>Coverage</strong> — indexed page count, a secondary reference metric.</span></li>
+      </ol>
+      <figcaption>Markers stay small and out of the content; the ordered list carries the explanation so nothing essential lives only inside the image.</figcaption>
+    </figure>
+  </section>
+
+  {/* ============================ DIAGRAMS & SCHEMATICS ==================== */}
+  <section class="section" id="diagrams">
+    <div class="section-head">
+      <span class="section-index">27</span>
+      <div><span class="eyebrow">Visual assets</span><h2 class="h1 mt-2">Diagrams & schematics</h2></div>
+    </div>
+    <p class="body reading muted" style="margin-bottom:var(--space-8)">
+      Thin lines, simple geometry, clear directional arrows, minimal color. Accent blue marks the
+      active path; muted gray carries secondary relationships. Diagrams read like technical
+      documentation, not marketing infographics.
+    </p>
+
+    <figure class="figure diagram scroll-x">
+      <span class="fig-label">Fig. 04</span>
+      <span class="fig-title">Retrieval-grounded answer pipeline</span>
+      <div class="media flush" style="border:0;background:transparent;overflow:visible">
+        <svg viewBox="0 0 1000 300" xmlns="http://www.w3.org/2000/svg" role="img"
+          aria-label="Pipeline: crawl, parse, embed, and index feed a retrieval, grounding, and answer path driven by a query.">
+          <defs>
+            <marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0 0 L6 3 L0 6" fill="none" stroke="#667085" stroke-width="1.25"/>
+            </marker>
+            <marker id="ahA" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0 0 L6 3 L0 6" fill="none" stroke="#0058ef" stroke-width="1.5"/>
+            </marker>
+          </defs>
+
+          {/* group boxes */}
+          <rect class="group" x="16" y="46" width="800" height="96" rx="4"/>
+          <text class="dim" x="28" y="66" font-size="11" letter-spacing="1">INGEST</text>
+          <rect class="group" x="184" y="186" width="800" height="96" rx="4"/>
+          <text class="dim" x="960" y="206" font-size="11" letter-spacing="1" text-anchor="end">SERVE</text>
+
+          {/* top row nodes */}
+          {[
+            { x: 40, l: "Crawl" }, { x: 240, l: "Parse" }, { x: 440, l: "Embed" },
+          ].map((n) => (
+            <>
+              <rect class="node" x={n.x} y="70" width="140" height="48" rx="4"/>
+              <text x={n.x + 70} y="99" font-size="13" text-anchor="middle">{n.l}</text>
+            </>
+          ))}
+          <rect class="node node-active" x="640" y="70" width="140" height="48" rx="4"/>
+          <text x="710" y="99" font-size="13" text-anchor="middle">Index</text>
+
+          {/* bottom row nodes */}
+          <rect class="node node-active" x="640" y="210" width="140" height="48" rx="4"/>
+          <text x="710" y="239" font-size="13" text-anchor="middle">Retrieve</text>
+          <rect class="node node-active" x="440" y="210" width="140" height="48" rx="4"/>
+          <text x="510" y="239" font-size="13" text-anchor="middle">Ground</text>
+          <rect class="node node-active" x="240" y="210" width="140" height="48" rx="4"/>
+          <text x="310" y="239" font-size="13" text-anchor="middle">Answer</text>
+          <rect class="node" x="840" y="210" width="130" height="48" rx="4"/>
+          <text x="905" y="239" font-size="13" text-anchor="middle">Query</text>
+
+          {/* flows */}
+          <path class="flow" d="M180 94 H236" marker-end="url(#ah)"/>
+          <path class="flow" d="M380 94 H436" marker-end="url(#ah)"/>
+          <path class="flow" d="M580 94 H636" marker-end="url(#ah)"/>
+          <path class="flow-active" d="M710 118 V206" marker-end="url(#ahA)"/>
+          <path class="flow-active" d="M840 234 H784" marker-end="url(#ahA)"/>
+          <path class="flow-active" d="M640 234 H584" marker-end="url(#ahA)"/>
+          <path class="flow-active" d="M440 234 H384" marker-end="url(#ahA)"/>
+        </svg>
+      </div>
+      <div class="fig-legend">
+        <span class="key"><i style="background:#0058ef"></i> Active path</span>
+        <span class="key"><i style="background:#667085"></i> Secondary flow</span>
+        <span class="key"><i style="background:#f6f5f4;border:1px solid rgba(26,27,28,.16)"></i> Grouped stage</span>
+      </div>
+      <figcaption>A query drives retrieval against the index, then grounding and answer generation. Diagram labels stay 11–14px; no gradients, shadows, or dimensional nodes.</figcaption>
+    </figure>
+  </section>
+
+  {/* ============================ DATA VISUALIZATION ==================== */}
+  <section class="section" id="dataviz">
+    <div class="section-head">
+      <span class="section-index">28</span>
+      <div><span class="eyebrow">Visual assets</span><h2 class="h1 mt-2">Data visualizations</h2></div>
+    </div>
+    <p class="body reading muted" style="margin-bottom:var(--space-8)">
+      Restrained and highly readable. Ink for primary data, accent blue for the point that matters,
+      muted gray for secondary series, thin grid lines, direct labels, and one clear message per
+      chart. No rainbow palettes, 3D, or decorative backgrounds.
+    </p>
+
+    <div class="grid-2" style="align-items:start;">
+      {/* Line / area chart */}
+      <figure class="figure chart">
+        <span class="fig-label">Fig. 05</span>
+        <span class="fig-title">Median answer latency is trending down</span>
+        <svg viewBox="0 0 640 240" xmlns="http://www.w3.org/2000/svg" role="img"
+          aria-label="Line chart of median latency over seven days, falling from 520ms to 312ms.">
+          <g class="grid">
+            <line class="grid-line" x1="50" y1="30" x2="620" y2="30"/>
+            <line class="grid-line" x1="50" y1="75" x2="620" y2="75"/>
+            <line class="grid-line" x1="50" y1="120" x2="620" y2="120"/>
+            <line class="grid-line" x1="50" y1="165" x2="620" y2="165"/>
+            <line class="axis" x1="50" y1="210" x2="620" y2="210"/>
+          </g>
+          <g font-size="10">
+            <text x="42" y="34" text-anchor="end">540</text>
+            <text x="42" y="79" text-anchor="end">480</text>
+            <text x="42" y="124" text-anchor="end">420</text>
+            <text x="42" y="169" text-anchor="end">360</text>
+            <text x="42" y="213" text-anchor="end">300</text>
+            <text x="50" y="228">Jul 12</text>
+            <text x="620" y="228" text-anchor="end">Jul 18</text>
+          </g>
+          <path d="M50 45 L143 75 L237 56 L330 112 L423 165 L517 188 L610 201 L610 210 L50 210 Z"
+            fill="rgba(46,123,255,0.10)" stroke="none"/>
+          <path class="series-accent" fill="none" stroke-width="2"
+            d="M50 45 L143 75 L237 56 L330 112 L423 165 L517 188 L610 201"/>
+          <circle cx="610" cy="201" r="4" fill="#0058ef"/>
+          <text x="600" y="193" text-anchor="end" font-size="11" fill="#0058ef" font-weight="600">312ms</text>
+        </svg>
+        <figcaption>p50 latency, 7-day window. A single accent series carries the one point the chart makes.</figcaption>
+        <details class="chart-summary">
+          <summary>Text summary</summary>
+          <p class="caption mt-2">Median latency fell from 520ms (Jul 12) to 312ms (Jul 18), a 40% reduction, with the steepest drop after the Jul 15 retrieval change.</p>
+        </details>
+      </figure>
+
+      {/* Bar chart */}
+      <figure class="figure chart">
+        <span class="fig-label">Fig. 06</span>
+        <span class="fig-title">Where answered queries are grounded</span>
+        <svg viewBox="0 0 640 240" xmlns="http://www.w3.org/2000/svg" role="img"
+          aria-label="Bar chart of grounded queries by source: Docs 9,800; API 6,400; Guides 4,200; Changelog 1,800; Blog 900.">
+          <g class="grid">
+            <line class="grid-line" x1="40" y1="30" x2="620" y2="30"/>
+            <line class="grid-line" x1="40" y1="90" x2="620" y2="90"/>
+            <line class="grid-line" x1="40" y1="150" x2="620" y2="150"/>
+            <line class="axis" x1="40" y1="210" x2="620" y2="210"/>
+          </g>
+          <g>
+            <rect class="bar-accent" x="68" y="33" width="60" height="177"/>
+            <rect class="bar-primary" x="184" y="95" width="60" height="115"/>
+            <rect class="bar-primary" x="300" y="134" width="60" height="76"/>
+            <rect class="bar-primary" x="416" y="178" width="60" height="32"/>
+            <rect class="bar-muted" x="532" y="194" width="60" height="16"/>
+          </g>
+          <g font-size="11" fill="#1a1b1c">
+            <text x="98" y="26" text-anchor="middle" font-weight="600" fill="#0058ef">9.8k</text>
+            <text x="214" y="88" text-anchor="middle">6.4k</text>
+            <text x="330" y="127" text-anchor="middle">4.2k</text>
+            <text x="446" y="171" text-anchor="middle">1.8k</text>
+            <text x="562" y="187" text-anchor="middle">0.9k</text>
+          </g>
+          <g font-size="10">
+            <text x="98" y="226" text-anchor="middle">Docs</text>
+            <text x="214" y="226" text-anchor="middle">API</text>
+            <text x="330" y="226" text-anchor="middle">Guides</text>
+            <text x="446" y="226" text-anchor="middle">Changelog</text>
+            <text x="562" y="226" text-anchor="middle">Blog</text>
+          </g>
+        </svg>
+        <figcaption>Docs dominate grounding — the accent bar — while the blog contributes least.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  {/* ============================ IMAGE SEQUENCE ==================== */}
+  <section class="section" id="sequence">
+    <div class="section-head">
+      <span class="section-index">29</span>
+      <div><span class="eyebrow">Visual assets</span><h2 class="h1 mt-2">Image sequences</h2></div>
+    </div>
+    <p class="body reading muted" style="margin-bottom:var(--space-8)">
+      For processes and product walkthroughs, use numbered steps separated by dividers — not
+      floating cards. Each step: number, short title, figure, one concise explanation.
+    </p>
+    <div class="sequence">
+      {[
+        { n: "01", t: "Author in Astro", d: "Write semantic, question-shaped pages as .astro source.", src: "/assets/media/strata.svg" },
+        { n: "02", t: "Build static HTML", d: "astro build emits the deploy artifact in dist/.", src: "/assets/media/infrastructure.svg" },
+        { n: "03", t: "Deploy & ground", d: "The platform generates llms.txt, mirrors, and the widget.", src: "/assets/media/contour.svg" },
+      ].map((s) => (
+        <div class="seq-step">
+          <div class="seq-n">{s.n}</div>
+          <div>
+            <div class="seq-title">{s.t}</div>
+            <p class="seq-desc">{s.d}</p>
+          </div>
+          <div class="seq-media media ratio-16-9">
+            <img src={s.src} alt={`Step ${s.n}: ${s.t}`} />
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {/* ============================ GRIDS, BACKGROUND, TREATMENT ==================== */}
+  <section class="section" id="image-grids">
+    <div class="section-head">
+      <span class="section-index">30</span>
+      <div><span class="eyebrow">Visual assets</span><h2 class="h1 mt-2">Grids, background & color treatment</h2></div>
+    </div>
+
+    <span class="label">Mixed-width image grid · shared caption</span>
+    <figure class="figure mt-4">
+      <div class="img-grid-mixed">
+        <div class="media ratio-4-3 span-rows"><img src="/assets/media/aperture.svg" alt="Concentric aperture study, primary image in the group." /></div>
+        <div class="media ratio-16-9"><img src="/assets/media/infrastructure.svg" alt="" /></div>
+        <div class="media ratio-16-9"><img src="/assets/media/contour.svg" alt="" /></div>
+      </div>
+      <figcaption>Editorial galleries align to the main grid with consistent gutters and a shared caption — not a masonry social feed.</figcaption>
+    </figure>
+
+    <span class="label mt-12" style="display:block">Color treatment · one image, restrained variants</span>
+    <div class="img-grid-3 treat-grid mt-4">
+      <figure class="figure"><div class="media ratio-3-2"><img class="treat-natural" src="/assets/media/contour.svg" alt="Contour field, natural color." /></div><figcaption>Natural color — default</figcaption></figure>
+      <figure class="figure"><div class="media ratio-3-2"><img class="treat-desat" src="/assets/media/contour.svg" alt="Contour field, slightly desaturated." /></div><figcaption>Slight desaturation</figcaption></figure>
+      <figure class="figure"><div class="media ratio-3-2 tint-blue"><img class="treat-blue" src="/assets/media/contour.svg" alt="Contour field, subtle blue tint for feature imagery." /></div><figcaption>Subtle blue tint — feature</figcaption></figure>
+    </div>
+
+    <span class="label mt-12" style="display:block">Background image · text beside, not over</span>
+    <div class="bg-band mt-4">
+      <img src="/assets/media/aperture.svg" alt="" />
+      <div class="overlay"></div>
+      <div class="band-text">
+        <span class="eyebrow" style="color:rgba(255,255,255,.75)">Research</span>
+        <h3 class="h3 mt-2" style="color:#fff">Grounding at scale</h3>
+        <p class="caption mt-2">Text sits in a quiet region over a subtle overlay, kept compact with verified contrast. On mobile it moves below the image.</p>
+      </div>
+    </div>
+    <p class="caption mt-4">Use background imagery sparingly — prefer placing text beside imagery rather than over it, and never set long paragraphs over a photograph.</p>
+  </section>
+
+  {/* ============================ IMAGE STATES + A11Y ==================== */}
+  <section class="section" id="image-states">
+    <div class="section-head">
+      <span class="section-index">31</span>
+      <div><span class="eyebrow">Visual assets</span><h2 class="h1 mt-2">Image states & accessibility</h2></div>
+    </div>
+    <div class="state-grid">
+      <div class="figure">
+        <div class="media ratio-4-3 skeleton"></div>
+        <span class="caption mt-2" style="display:block">Loading</span>
+      </div>
+      <div class="figure">
+        <div class="img-state ratio-4-3"><Icon name="file" size={20} /><span class="st-label">No image</span></div>
+        <span class="caption mt-2" style="display:block">Missing</span>
+      </div>
+      <div class="figure">
+        <div class="img-state is-error ratio-4-3"><Icon name="alert" size={20} /><span class="st-label">Failed to load</span></div>
+        <span class="caption mt-2" style="display:block">Failed</span>
+      </div>
+      <div class="figure">
+        <div class="img-state ratio-4-3"><Icon name="x" size={20} /><span class="st-label">.heic unsupported</span></div>
+        <span class="caption mt-2" style="display:block">Unsupported</span>
+      </div>
+      <div class="figure">
+        <div class="img-state ratio-4-3"><span class="progress" style="width:70%;align-self:stretch"><span style="width:60%"></span></span><span class="st-label">Processing…</span></div>
+        <span class="caption mt-2" style="display:block">Processing</span>
+      </div>
+      <div class="figure">
+        <div class="img-state ratio-4-3"><Icon name="info" size={20} /><span class="st-label">No figure available</span></div>
+        <span class="caption mt-2" style="display:block">No figure</span>
+      </div>
+    </div>
+
+    <div class="panel mt-12" style="padding:var(--space-6)">
+      <span class="label">Accessibility rules</span>
+      <ul class="rule-list mt-4" style="columns:2;column-gap:var(--space-12)">
+        <li>Meaningful images carry descriptive <span class="mono">alt</span> text.</li>
+        <li>Decorative images use empty <span class="mono">alt=""</span>.</li>
+        <li>Figures include captions when context isn't obvious.</li>
+        <li>Charts &amp; diagrams provide a text summary and key values.</li>
+        <li>Status uses non-color indicators, not hue alone.</li>
+        <li>Essential information never lives only inside an image.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<style>
+  .ratio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+  .ratio-meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-top: var(--space-3);
+  }
+  .anatomy { border-top: 1px solid var(--divider); }
+  .anatomy-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--divider);
+  }
+  .chart-summary { margin-top: var(--space-3); }
+  .chart-summary summary {
+    font-size: var(--fs-caption);
+    color: var(--text-accent);
+    cursor: pointer;
+    font-weight: var(--fw-medium);
+  }
+  .treat-grid .figure { min-width: 0; }
+  .state-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+  .state-grid .img-state,
+  .state-grid .skeleton { width: 100%; }
+  @media (max-width: 900px) {
+    .ratio-grid { grid-template-columns: 1fr 1fr; }
+    .state-grid { grid-template-columns: 1fr 1fr; }
+    .treat-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .ratio-grid { grid-template-columns: 1fr; }
+    .state-grid { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,209 @@
+---
+import "../styles/tokens.css";
+import "../styles/styleguide.css";
+import Icon from "../components/Icon.astro";
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+
+const nav = [
+  { id: "overview", label: "Overview" },
+  { id: "color", label: "Color" },
+  { id: "typography", label: "Type" },
+  { id: "layout", label: "Layout" },
+  { id: "components", label: "Components" },
+  { id: "technical", label: "Technical" },
+  { id: "media", label: "Media" },
+  { id: "compositions", label: "Compositions" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a href="#overview" class="visually-hidden">Skip to content</a>
+    <header class="site-nav">
+      <div class="site-nav-inner container">
+        <a class="brand" href="#overview" aria-label="answer.cloud design system home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-name">answer<span class="brand-dot">.</span>cloud</span>
+          <span class="brand-sub">Design system</span>
+        </a>
+        <nav class="site-links" aria-label="Sections">
+          {nav.map((n) => <a href={`#${n.id}`}>{n.label}</a>)}
+        </nav>
+        <div class="site-nav-action">
+          <span class="ver mono">v1.0</span>
+          <a class="btn btn-primary btn-sm" href="#components">
+            Components <Icon name="arrow" size={14} />
+          </a>
+          <button class="nav-toggle btn-icon btn" aria-label="Open menu">
+            <Icon name="menu" size={18} />
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="overview">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer-inner">
+        <div>
+          <span class="brand-name">answer<span class="brand-dot">.</span>cloud</span>
+          <p class="caption mt-2">
+            Default brand style guide and UI design system. Restrained, technical, editorial.
+          </p>
+        </div>
+        <nav class="footer-cols" aria-label="Footer">
+          <div>
+            <span class="label">System</span>
+            <a class="link-util" href="#color">Color tokens</a>
+            <a class="link-util" href="#typography">Typography</a>
+            <a class="link-util" href="#spacing">Spacing</a>
+          </div>
+          <div>
+            <span class="label">Components</span>
+            <a class="link-util" href="#buttons">Buttons</a>
+            <a class="link-util" href="#forms">Forms</a>
+            <a class="link-util" href="#technical">Technical UI</a>
+          </div>
+          <div>
+            <span class="label">Reference</span>
+            <a class="link-util" href="#accessibility">Accessibility</a>
+            <a class="link-util" href="#figures">Figures & media</a>
+            <a class="link-util" href="#dataviz">Data visualization</a>
+          </div>
+        </nav>
+      </div>
+    </footer>
+
+    <style>
+      .site-nav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        height: var(--nav-height);
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: saturate(1.1) blur(8px);
+        border-bottom: 1px solid var(--border-default);
+      }
+      .site-nav-inner {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        gap: var(--space-8);
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        color: var(--text-primary);
+      }
+      .brand-mark {
+        width: 18px;
+        height: 18px;
+        border-radius: var(--radius-sm);
+        background: linear-gradient(135deg, #2e7bff 0%, #0058ef 100%);
+      }
+      .brand-name {
+        font-weight: var(--fw-semibold);
+        letter-spacing: var(--tracking-tight);
+      }
+      .brand-dot {
+        color: var(--color-accent);
+      }
+      .brand-sub {
+        font-size: var(--fs-caption);
+        color: var(--text-muted);
+        padding-left: var(--space-3);
+        margin-left: var(--space-2);
+        border-left: 1px solid var(--border-default);
+      }
+      .site-links {
+        display: flex;
+        gap: var(--space-6);
+        margin-right: auto;
+      }
+      .site-links a {
+        font-size: var(--fs-body-sm);
+        color: var(--text-secondary);
+        transition: color var(--dur) var(--ease);
+      }
+      .site-links a:hover {
+        color: var(--text-primary);
+      }
+      .site-nav-action {
+        display: flex;
+        align-items: center;
+        gap: var(--space-4);
+      }
+      .ver {
+        font-size: var(--fs-caption);
+        color: var(--text-muted);
+      }
+      .nav-toggle {
+        display: none;
+      }
+      .site-footer {
+        border-top: 1px solid var(--border-default);
+        background: var(--bg-alt);
+        padding-block: var(--space-16);
+        margin-top: var(--space-16);
+      }
+      .site-footer-inner {
+        display: grid;
+        grid-template-columns: 1fr 1.4fr;
+        gap: var(--space-12);
+      }
+      .footer-cols {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-6);
+      }
+      .footer-cols > div {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+      }
+      .footer-cols .label {
+        margin-bottom: var(--space-2);
+      }
+      @media (max-width: 900px) {
+        .site-links,
+        .ver {
+          display: none;
+        }
+        .nav-toggle {
+          display: inline-flex;
+        }
+        .brand-sub {
+          display: none;
+        }
+        .site-footer-inner {
+          grid-template-columns: 1fr;
+          gap: var(--space-8);
+        }
+        .footer-cols {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    </style>
+  </body>
+</html>

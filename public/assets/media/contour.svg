@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Abstract topographic contour field">
+  <rect width="1200" height="800" fill="#f6f5f4"/>
+  <g fill="none" stroke="#1a1b1c" stroke-opacity="0.16" stroke-width="1.25">
+    <path d="M-40 620 C 200 560, 360 700, 600 600 S 1000 520, 1260 600"/>
+    <path d="M-40 560 C 200 500, 380 640, 620 540 S 1000 460, 1260 540"/>
+    <path d="M-40 500 C 220 440, 400 580, 640 480 S 1000 400, 1260 480"/>
+    <path d="M-40 440 C 240 380, 420 520, 660 420 S 1000 340, 1260 420"/>
+    <path d="M-40 380 C 260 320, 440 460, 680 360 S 1000 280, 1260 360"/>
+    <path d="M-40 320 C 280 260, 460 400, 700 300 S 1000 220, 1260 300"/>
+    <path d="M-40 260 C 300 200, 480 340, 720 240 S 1000 160, 1260 240"/>
+  </g>
+  <g fill="none" stroke="#0058ef" stroke-width="2">
+    <path d="M-40 500 C 220 440, 400 580, 640 480 S 1000 400, 1260 480"/>
+  </g>
+  <g fill="#0058ef">
+    <circle cx="640" cy="480" r="5"/>
+  </g>
+  <g fill="#667085">
+    <circle cx="400" cy="533" r="3"/><circle cx="1000" cy="400" r="3"/>
+  </g>
+</svg>

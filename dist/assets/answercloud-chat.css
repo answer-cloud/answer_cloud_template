@@ -1,0 +1,191 @@
+/* =========================================================================
+   answer.cloud — chat widget theme
+   Derived from the site design system (tokens.css). Loaded into BOTH the host
+   page (#llmo-chat-button, #llmo-chat-iframe) and the chat iframe
+   (#llmo-chat-widget). Every rule is scoped beneath one of those three IDs so
+   the host site is never restyled.
+   ========================================================================= */
+
+/* ---------- Launcher button (host page) ---------------------------------- */
+#llmo-chat-button {
+  font-family: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif !important;
+  background: #0058ef !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(26, 27, 28, 0.16) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 1px 2px rgba(26, 27, 28, 0.08), 0 8px 24px rgba(26, 27, 28, 0.12) !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  letter-spacing: -0.005em !important;
+  transition: background 200ms cubic-bezier(0.2, 0.6, 0.2, 1),
+    transform 200ms cubic-bezier(0.2, 0.6, 0.2, 1) !important;
+}
+#llmo-chat-button:hover {
+  background: #0049c4 !important;
+  transform: translateY(-1px);
+}
+#llmo-chat-button:focus-visible {
+  outline: 2px solid #2e7bff !important;
+  outline-offset: 2px !important;
+}
+
+/* ---------- Iframe frame (host page) ------------------------------------- */
+#llmo-chat-iframe {
+  border: 1px solid rgba(26, 27, 28, 0.16) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(26, 27, 28, 0.10), 0 24px 64px rgba(26, 27, 28, 0.18) !important;
+  background: #ffffff !important;
+}
+
+/* ---------- Widget interior (inside the iframe) -------------------------- */
+#llmo-chat-widget {
+  --ac-accent: #2e7bff;
+  --ac-accent-deep: #0058ef;
+  --ac-ink: #1a1b1c;
+  --ac-muted: #667085;
+  --ac-border: rgba(26, 27, 28, 0.16);
+  --ac-subtle: rgba(26, 27, 28, 0.10);
+  --ac-surface: #ffffff;
+  --ac-inset: #f7f8f9;
+
+  font-family: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif !important;
+  color: var(--ac-ink) !important;
+  background: var(--ac-surface) !important;
+  font-size: 15px !important;
+  line-height: 1.55 !important;
+}
+
+/* Header */
+#llmo-chat-widget header,
+#llmo-chat-widget .llmo-header {
+  background: #ffffff !important;
+  color: var(--ac-ink) !important;
+  border-bottom: 1px solid var(--ac-border) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* Controls: send / close / clear */
+#llmo-chat-widget button {
+  font-family: inherit !important;
+  border-radius: 4px !important;
+  transition: background 200ms cubic-bezier(0.2, 0.6, 0.2, 1),
+    color 200ms cubic-bezier(0.2, 0.6, 0.2, 1) !important;
+}
+#llmo-chat-widget button[type="submit"],
+#llmo-chat-widget .llmo-send {
+  background: var(--ac-accent-deep) !important;
+  color: #ffffff !important;
+  border: 1px solid transparent !important;
+  font-weight: 500 !important;
+}
+#llmo-chat-widget button[type="submit"]:hover,
+#llmo-chat-widget .llmo-send:hover {
+  background: #0049c4 !important;
+}
+#llmo-chat-widget button:focus-visible {
+  outline: 2px solid var(--ac-accent) !important;
+  outline-offset: 2px !important;
+}
+
+/* Composer input */
+#llmo-chat-widget input[type="text"],
+#llmo-chat-widget textarea,
+#llmo-chat-widget .llmo-input {
+  font-family: inherit !important;
+  font-size: 15px !important;
+  color: var(--ac-ink) !important;
+  background: var(--ac-surface) !important;
+  border: 1px solid var(--ac-border) !important;
+  border-radius: 4px !important;
+}
+#llmo-chat-widget input[type="text"]:focus,
+#llmo-chat-widget textarea:focus,
+#llmo-chat-widget .llmo-input:focus {
+  outline: none !important;
+  border-color: var(--ac-accent) !important;
+  box-shadow: 0 0 0 3px rgba(46, 123, 255, 0.45) !important;
+}
+
+/* Messages */
+#llmo-chat-widget .llmo-message-user,
+#llmo-chat-widget .user-message {
+  background: rgba(46, 123, 255, 0.10) !important;
+  color: var(--ac-ink) !important;
+  border: 1px solid rgba(46, 123, 255, 0.20) !important;
+  border-radius: 8px !important;
+}
+#llmo-chat-widget .llmo-message-assistant,
+#llmo-chat-widget .assistant-message {
+  background: var(--ac-inset) !important;
+  color: var(--ac-ink) !important;
+  border: 1px solid var(--ac-subtle) !important;
+  border-radius: 8px !important;
+}
+
+/* Answer typography */
+#llmo-chat-widget h1,
+#llmo-chat-widget h2,
+#llmo-chat-widget h3 {
+  letter-spacing: -0.01em !important;
+  font-weight: 600 !important;
+}
+#llmo-chat-widget h2 { font-size: 20px !important; }
+#llmo-chat-widget h3 { font-size: 17px !important; }
+#llmo-chat-widget a {
+  color: var(--ac-accent-deep) !important;
+  border-bottom: 1px solid rgba(46, 123, 255, 0.35) !important;
+  text-decoration: none !important;
+}
+#llmo-chat-widget a:hover {
+  border-bottom-color: var(--ac-accent-deep) !important;
+}
+#llmo-chat-widget code,
+#llmo-chat-widget pre {
+  font-family: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, Consolas, monospace !important;
+  font-size: 13px !important;
+  background: var(--ac-inset) !important;
+  border: 1px solid var(--ac-subtle) !important;
+  border-radius: 4px !important;
+}
+
+/* References / citations */
+#llmo-chat-widget .llmo-references,
+#llmo-chat-widget .references {
+  border-top: 1px solid var(--ac-subtle) !important;
+  color: var(--ac-muted) !important;
+  font-size: 13px !important;
+}
+
+/* Loading state */
+#llmo-chat-widget .llmo-loading span,
+#llmo-chat-widget .typing-dot {
+  background: var(--ac-accent) !important;
+}
+
+/* Attribution — preserve, keep readable */
+#llmo-chat-widget .llmo-attribution,
+#llmo-chat-widget .powered-by {
+  color: var(--ac-muted) !important;
+  font-size: 11px !important;
+}
+
+/* Responsive frame */
+@media (max-width: 640px) {
+  #llmo-chat-iframe {
+    border-radius: 0 !important;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  #llmo-chat-button,
+  #llmo-chat-widget button {
+    transition: none !important;
+  }
+  #llmo-chat-button:hover {
+    transform: none;
+  }
+}
