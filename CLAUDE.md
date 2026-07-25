@@ -12,7 +12,7 @@
 
 This is the **default brand style guide and UI design system** for answer.cloud sites —
 a single-page, responsive reference derived from a restrained, technical, editorial visual
-language (poolside.ai as reference). It is intended to be the default starting point for new
+language. It is intended to be the default starting point for new
 answer.cloud sites.
 
 Design constraints (do not violate):

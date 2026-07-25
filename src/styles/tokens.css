@@ -118,6 +118,21 @@
   --space-20: 80px;
   --space-24: 96px;
 
+  /* ---- Rhythm (semantic spacing — the same decision, everywhere) ----- */
+  --rhythm-label-heading: var(--space-2); /* eyebrow/label → heading   (8)  */
+  --rhythm-heading-body: var(--space-3); /* heading → body copy        (12) */
+  --rhythm-body-action: var(--space-6); /* body copy → action          (24) */
+  --rhythm-figure-caption: var(--space-3); /* figure → caption         (12) */
+  --rhythm-title-content: var(--space-8); /* section title → content   (32) */
+  --rhythm-heading-controls: var(--space-4); /* component heading → UI  (16) */
+  --rhythm-row: var(--space-4); /* row → row inside a group            (16) */
+  --rhythm-group: var(--space-12); /* group → group / subsection       (48) */
+
+  /* Section vertical rhythm — dense vs default vs open */
+  --section-space: var(--space-16); /* 64 default                          */
+  --section-space-open: var(--space-20); /* 80 editorial / imagery         */
+  --section-space-dense: var(--space-12); /* 48 technical / dense           */
+
   /* ---- Layout -------------------------------------------------------- */
   --page-max: 1440px;
   --content-max: 1240px;
@@ -154,9 +169,14 @@
   }
 }
 
-/* Mobile gutter */
+/* Mobile gutter + type caps (nothing over 28px on small screens) */
 @media (max-width: 640px) {
   :root {
     --gutter: 20px;
+    --fs-page-title: 28px; /* 32 → 28 */
+    --fs-h1: 26px; /* 28 → 26 */
+    --section-space: var(--space-12); /* 64 → 48 */
+    --section-space-open: var(--space-16); /* 80 → 64 */
+    --section-space-dense: var(--space-8); /* 48 → 32 */
   }
 }

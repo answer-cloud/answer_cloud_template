@@ -149,22 +149,55 @@ a {
 }
 
 .section {
-  padding-block: var(--space-16);
-  border-top: 1px solid var(--divider);
+  padding-block: var(--section-space);
 }
+.section.is-open { --section-space: var(--section-space-open); }
+.section.is-dense { --section-space: var(--section-space-dense); }
 
+/* Documentation-grade section header:
+   a hairline meta row [NN · kicker] with the title hung beneath it.
+   Structure (unchanged markup): .section-head > .section-index + div(.eyebrow + .h1) */
 .section-head {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: var(--space-3);
+  row-gap: var(--rhythm-label-heading);
   align-items: baseline;
-  gap: var(--space-4);
-  margin-bottom: var(--space-8);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-default);
+  margin-bottom: var(--rhythm-title-content);
 }
-
+/* unwrap the inner div so index + kicker share the meta row and the title
+   spans back to the same left edge as the index (no detached hanging number) */
+.section-head > div { display: contents; }
 .section-index {
+  grid-column: 1;
+  grid-row: 1;
   font-family: var(--font-mono);
   font-size: var(--fs-caption);
-  color: var(--text-muted);
-  padding-top: 4px;
+  font-weight: var(--fw-medium);
+  color: var(--color-accent-deep);
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.section-head .eyebrow {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+}
+.section-head .h1 {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  margin-top: 0; /* rhythm carried by row-gap */
+}
+
+/* Section lede — the one-line intro under a section title */
+.lede {
+  font-size: var(--fs-body-lg);
+  line-height: 1.55;
+  color: var(--text-secondary);
+  max-width: 68ch;
+  margin-bottom: var(--rhythm-title-content);
 }
 
 .stack > * + * {
@@ -1113,7 +1146,8 @@ kbd,
 
 /* Icon demo */
 .icon-row {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
   flex-wrap: wrap;
   gap: var(--space-6);
   align-items: center;
@@ -1160,10 +1194,10 @@ kbd,
 }
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
-.mt-2 { margin-top: var(--space-2); }
-.mt-4 { margin-top: var(--space-4); }
-.mt-6 { margin-top: var(--space-6); }
-.mt-8 { margin-top: var(--space-8); }
+.mt-2 { margin-top: var(--space-2) !important; }
+.mt-4 { margin-top: var(--space-4) !important; }
+.mt-6 { margin-top: var(--space-6) !important; }
+.mt-8 { margin-top: var(--space-8) !important; }
 
 /* Responsive frames */
 .device-row {
@@ -1604,3 +1638,125 @@ kbd,
 @media (prefers-reduced-motion: reduce) {
   .skeleton::after { animation: none; }
 }
+
+/* =========================================================================
+   Review refinements — unified states, alerts, image treatments, motion
+   ========================================================================= */
+
+/* Unified keyboard focus for every interactive primitive (inputs keep the
+   border-color + ring treatment defined earlier). */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--focus-outline);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+.menu-item:focus-visible,
+.index-row:focus-within {
+  outline: 2px solid var(--focus-outline);
+  outline-offset: -2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Tactile press — subtle, and disabled under reduced-motion */
+.btn:not(:disabled):active { transform: translateY(1px); }
+@media (prefers-reduced-motion: reduce) {
+  .btn:not(:disabled):active { transform: none; }
+}
+
+/* ---- Alert / inline banner ------------------------------------------- */
+.alert {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border-default);
+  border-left-width: 2px;
+  border-radius: var(--radius);
+  background: var(--bg-page);
+  font-size: var(--fs-body-sm);
+  align-items: start;
+}
+.alert .alert-icon { margin-top: 1px; }
+.alert .alert-title { font-weight: var(--fw-medium); color: var(--text-primary); }
+.alert p { color: var(--text-secondary); margin: 2px 0 0; }
+.alert-info { border-left-color: var(--info); background: var(--info-bg); }
+.alert-info .alert-icon { color: var(--info); }
+.alert-success { border-left-color: var(--success); background: var(--success-bg); }
+.alert-success .alert-icon { color: var(--success); }
+.alert-warning { border-left-color: var(--warning); background: var(--warning-bg); }
+.alert-warning .alert-icon { color: var(--warning); }
+.alert-error { border-left-color: var(--error); background: var(--error-bg); }
+.alert-error .alert-icon { color: var(--error); }
+
+/* ---- Image treatment system (role-based, never one filter for all) --- */
+.media--dark { background: #0f1113; }
+.treat-dark { filter: brightness(0.82) contrast(1.06); }
+
+/* controlled gradient fade — leaves negative space for overlaid captions */
+.media--fade::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(15, 17, 19, 0) 42%, rgba(15, 17, 19, 0.74) 100%);
+  pointer-events: none;
+}
+/* very subtle grain */
+.media--grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+}
+/* thin grid overlay, used sparingly over dark imagery */
+.media--grid-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+  background-size: 52px 52px;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 85%);
+  mask-image: linear-gradient(180deg, #000 0%, transparent 85%);
+}
+/* figure metadata positioned over the image corner */
+.media__meta {
+  position: absolute;
+  z-index: 3;
+  left: var(--space-3);
+  bottom: var(--space-3);
+  display: inline-flex;
+  gap: var(--space-2);
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  color: #fff;
+  letter-spacing: 0.04em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+.media__meta .dotc {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(46, 123, 255, 0.28);
+}
+/* image extends slightly beyond its content column for a stronger moment */
+.media--bleed { margin-inline: calc(-1 * var(--space-8)); }
+@media (max-width: 900px) {
+  .media--bleed { margin-inline: 0; }
+}
+
+/* Numeric cells: consistent tabular alignment everywhere */
+.data-table td.num,
+.data-table th.num { font-variant-numeric: tabular-nums; }

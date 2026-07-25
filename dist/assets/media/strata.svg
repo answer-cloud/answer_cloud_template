@@ -1,25 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Abstract layered strata section">
-  <rect width="1200" height="800" fill="#f7f8f9"/>
-  <defs>
-    <pattern id="hatch" width="10" height="10" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
-      <line x1="0" y1="0" x2="0" y2="10" stroke="#1a1b1c" stroke-opacity="0.18" stroke-width="1"/>
-    </pattern>
-    <pattern id="hatch2" width="8" height="8" patternTransform="rotate(-45)" patternUnits="userSpaceOnUse">
-      <line x1="0" y1="0" x2="0" y2="8" stroke="#0058ef" stroke-opacity="0.4" stroke-width="1"/>
-    </pattern>
-  </defs>
-  <rect x="0" y="0" width="1200" height="150" fill="#eef0f2"/>
-  <rect x="0" y="150" width="1200" height="120" fill="url(#hatch)"/>
-  <rect x="0" y="270" width="1200" height="90" fill="#e7e9ec"/>
-  <rect x="0" y="360" width="1200" height="110" fill="url(#hatch2)"/>
-  <rect x="0" y="470" width="1200" height="140" fill="#e7e9ec"/>
-  <rect x="0" y="610" width="1200" height="190" fill="url(#hatch)"/>
-  <g stroke="#1a1b1c" stroke-opacity="0.45" stroke-width="1.5">
-    <line x1="0" y1="150" x2="1200" y2="150"/><line x1="0" y1="270" x2="1200" y2="270"/>
-    <line x1="0" y1="360" x2="1200" y2="360"/><line x1="0" y1="470" x2="1200" y2="470"/>
-    <line x1="0" y1="610" x2="1200" y2="610"/>
-  </g>
-  <g stroke="#0058ef" stroke-width="2">
-    <line x1="0" y1="360" x2="1200" y2="360"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Atmospheric profile: stacked pressure-level lines with a blue boundary layer.">
+  <rect width="1600" height="900" fill="#f6f5f4"/>
+  <path d="M0,130 C400,114 800,146 1200,130 C1400,122 1600,138 1600,130" fill="none" stroke="#1a1b1c" stroke-opacity="0.16" stroke-width="1.25"/>
+  <path d="M0,240 C400,224 800,256 1200,240 C1400,232 1600,248 1600,240" fill="none" stroke="#1a1b1c" stroke-opacity="0.16" stroke-width="1.25"/>
+  <path d="M0,350 C400,334 800,366 1200,350 C1400,342 1600,358 1600,350" fill="none" stroke="#1a1b1c" stroke-opacity="0.16" stroke-width="1.25"/>
+  <path d="M0,460 C400,444 800,476 1200,460 C1400,452 1600,468 1600,460" fill="none" stroke="#0058ef" stroke-width="2"/>
+  <path d="M0,570 C400,554 800,586 1200,570 C1400,562 1600,578 1600,570" fill="none" stroke="#1a1b1c" stroke-opacity="0.16" stroke-width="1.25"/>
+  <path d="M0,680 C400,664 800,696 1200,680 C1400,672 1600,688 1600,680" fill="none" stroke="#1a1b1c" stroke-opacity="0.16" stroke-width="1.25"/>
+  <path d="M0,790 C400,774 800,806 1200,790 C1400,782 1600,798 1600,790" fill="none" stroke="#1a1b1c" stroke-opacity="0.16" stroke-width="1.25"/>
+  <text x="1520" y="232" font-family="monospace" font-size="20" fill="#667085" text-anchor="end">250 hPa</text>
+  <text x="1520" y="452" font-family="monospace" font-size="20" fill="#667085" text-anchor="end">500 hPa</text>
+  <text x="1520" y="672" font-family="monospace" font-size="20" fill="#667085" text-anchor="end">850 hPa</text>
+  <rect x="795" y="471" width="10" height="10" fill="#0058ef" transform="rotate(45 800 476)"/>
 </svg>

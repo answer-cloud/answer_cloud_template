@@ -96,13 +96,16 @@ const nav = [
 
     <style>
       .site-nav {
-        position: sticky;
-        top: 0;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        border-radius: 3px;
+        border: 1px solid var(--border-default);
         z-index: 50;
         height: var(--nav-height);
-        background: rgba(255, 255, 255, 0.85);
+        background: rgba(255, 255, 255, 0.5);
         backdrop-filter: saturate(1.1) blur(8px);
-        border-bottom: 1px solid var(--border-default);
       }
       .site-nav-inner {
         height: 100%;

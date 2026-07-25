@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Wind field: streamlines of flow with wind barbs along the primary jet, in blue.">
+  <defs><linearGradient id="fl" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#f2f1ef"/></linearGradient></defs>
+  <rect width="1600" height="900" fill="url(#fl)"/>
+  <path d="M0,90 C266,64 533,116 800,90 C1067,64 1333,116 1600,90" fill="none" stroke="#1a1b1c" stroke-opacity="0.16" stroke-width="1.25"/>
+  <path d="M0,138 C266,112 533,164 800,138 C1067,112 1333,164 1600,138" fill="none" stroke="#1a1b1c" stroke-opacity="0.16" stroke-width="1.25"/>
+  <path d="M0,186 C266,160 533,212 800,186 C1067,160 1333,212 1600,186" fill="none" stroke="#1a1b1c" stroke-opacity="0.16" stroke-width="1.25"/>
+  <path d="M0,234 C266,208 533,260 800,234 C1067,208 1333,260 1600,234" fill="none" stroke="#1a1b1c" stroke-opacity="0.16" stroke-width="1.25"/>
+  <path d="M0,282 C266,256 533,308 800,282 C1067,256 1333,308 1600,282" fill="none" stroke="#1a1b1c" stroke-opacity="0.16" stroke-width="1.25"/>
+  <path d="M0,330 C266,304 533,356 800,330 C1067,304 1333,356 1600,330" fill="none" stroke="#1a1b1c" stroke-opacity="0.16" stroke-width="1.25"/>
+  <path d="M0,378 C266,352 533,404 800,378 C1067,352 1333,404 1600,378" fill="none" stroke="#1a1b1c" stroke-opacity="0.16" stroke-width="1.25"/>
+  <path d="M0,426 C266,400 533,452 800,426 C1067,400 1333,452 1600,426" fill="none" stroke="#0058ef" stroke-width="2"/>
+  <path d="M0,474 C266,448 533,500 800,474 C1067,448 1333,500 1600,474" fill="none" stroke="#1a1b1c" stroke-opacity="0.16" stroke-width="1.25"/>
+  <path d="M0,522 C266,496 533,548 800,522 C1067,496 1333,548 1600,522" fill="none" stroke="#1a1b1c" stroke-opacity="0.16" stroke-width="1.25"/>
+  <path d="M0,570 C266,544 533,596 800,570 C1067,544 1333,596 1600,570" fill="none" stroke="#1a1b1c" stroke-opacity="0.16" stroke-width="1.25"/>
+  <path d="M0,618 C266,592 533,644 800,618 C1067,592 1333,644 1600,618" fill="none" stroke="#1a1b1c" stroke-opacity="0.16" stroke-width="1.25"/>
+  <path d="M0,666 C266,640 533,692 800,666 C1067,640 1333,692 1600,666" fill="none" stroke="#1a1b1c" stroke-opacity="0.16" stroke-width="1.25"/>
+  <path d="M0,714 C266,688 533,740 800,714 C1067,688 1333,740 1600,714" fill="none" stroke="#1a1b1c" stroke-opacity="0.16" stroke-width="1.25"/>
+  <path d="M0,762 C266,736 533,788 800,762 C1067,736 1333,788 1600,762" fill="none" stroke="#1a1b1c" stroke-opacity="0.16" stroke-width="1.25"/>
+  <path d="M0,810 C266,784 533,836 800,810 C1067,784 1333,836 1600,810" fill="none" stroke="#1a1b1c" stroke-opacity="0.16" stroke-width="1.25"/>
+  <g><line x1="300" y1="424" x2="300" y2="398" stroke="#0058ef" stroke-width="2"/><line x1="300" y1="398" x2="289" y2="392" stroke="#0058ef" stroke-width="2"/><line x1="300" y1="405" x2="289" y2="399" stroke="#0058ef" stroke-width="2"/></g>
+  <g><line x1="650" y1="430" x2="650" y2="404" stroke="#0058ef" stroke-width="2"/><line x1="650" y1="404" x2="639" y2="398" stroke="#0058ef" stroke-width="2"/><line x1="650" y1="411" x2="639" y2="405" stroke="#0058ef" stroke-width="2"/></g>
+  <g><line x1="1000" y1="420" x2="1000" y2="394" stroke="#0058ef" stroke-width="2"/><line x1="1000" y1="394" x2="989" y2="388" stroke="#0058ef" stroke-width="2"/><line x1="1000" y1="401" x2="989" y2="395" stroke="#0058ef" stroke-width="2"/></g>
+  <g><line x1="1350" y1="428" x2="1350" y2="402" stroke="#0058ef" stroke-width="2"/><line x1="1350" y1="402" x2="1339" y2="396" stroke="#0058ef" stroke-width="2"/><line x1="1350" y1="409" x2="1339" y2="403" stroke="#0058ef" stroke-width="2"/></g>
+  <text x="1352" y="150" font-family="monospace" font-size="20" fill="#667085">25 kt</text>
+</svg>

@@ -100,14 +100,7 @@ const principles = [
         <div class="row mt-8">
           <a class="btn btn-primary" href="#color">Explore tokens <Icon name="arrow" size={14} /></a>
           <a class="btn btn-secondary" href="#components">Component preview</a>
-          <span class="tag">max type 32px</span>
         </div>
-        <dl class="hero-stats mt-8">
-          <div><dt class="label">Typeface</dt><dd class="mono">Instrument Sans</dd></div>
-          <div><dt class="label">Accent</dt><dd class="mono">#2E7BFF</dd></div>
-          <div><dt class="label">Grid</dt><dd class="mono">12 / 6 / 4</dd></div>
-          <div><dt class="label">Max width</dt><dd class="mono">1440px</dd></div>
-        </dl>
       </div>
     </div>
   </section>
@@ -218,7 +211,7 @@ const principles = [
         ))}
       </div>
 
-      <h3 class="h3 mt-12">Semantic tokens</h3>
+      <h3 class="h3 mt-8">Semantic tokens</h3>
       <div class="table-scroll mt-4">
         <table class="token-table">
           <thead>
@@ -271,7 +264,7 @@ const principles = [
         </div>
       </div>
 
-      <div class="type-scale mt-12">
+      <div class="type-scale mt-8">
         {typeScale.map((t) => (
           <div class="type-row">
             <div class={t.cls}>Grounded answers for technical teams</div>
@@ -343,7 +336,7 @@ const principles = [
     </section>
 
     {/* ============================ 9. SPACING ==================== */}
-    <section class="section" id="spacing">
+    <section class="section is-dense" id="spacing">
       <div class="section-head">
         <span class="section-index">09</span>
         <div><span class="eyebrow">Structure</span><h2 class="h1 mt-2">Spacing system</h2></div>
@@ -364,7 +357,7 @@ const principles = [
     </section>
 
     {/* ============================ 10. BORDERS / DIVIDERS ==================== */}
-    <section class="section" id="borders">
+    <section class="section is-dense" id="borders">
       <div class="section-head">
         <span class="section-index">10</span>
         <div><span class="eyebrow">Structure</span><h2 class="h1 mt-2">Borders & dividers</h2></div>
@@ -408,7 +401,7 @@ const principles = [
 
   {/* ============================ 12. BUTTONS & LINKS ==================== */}
   <div class="container" id="components">
-    <section class="section" id="buttons">
+    <section class="section is-dense" id="buttons">
       <div class="section-head">
         <span class="section-index">12</span>
         <div><span class="eyebrow">Components</span><h2 class="h1 mt-2">Buttons & links</h2></div>
@@ -449,7 +442,7 @@ const principles = [
     </section>
 
     {/* ============================ 13. FORMS ==================== */}
-    <section class="section" id="forms">
+    <section class="section is-dense" id="forms">
       <div class="section-head">
         <span class="section-index">13</span>
         <div><span class="eyebrow">Components</span><h2 class="h1 mt-2">Form elements</h2></div>
@@ -522,7 +515,7 @@ const principles = [
 
   {/* ============================ 14. EDITORIAL PATTERNS ==================== */}
   <div class="container">
-    <section class="section" id="editorial">
+    <section class="section is-open" id="editorial">
       <div class="section-head">
         <span class="section-index">14</span>
         <div><span class="eyebrow">Modules</span><h2 class="h1 mt-2">Editorial content patterns</h2></div>
@@ -546,7 +539,7 @@ const principles = [
         ))}
       </div>
 
-      <span class="label mt-12" style="display:block;">Metric modules</span>
+      <span class="label mt-8" style="display:block;">Metric modules</span>
       <div class="metric-grid mt-4">
         <div class="metric"><div class="k">Median latency</div><div class="v">312<span style="font-size:16px;color:var(--text-muted)">ms</span></div><div class="ctx trend-down"><Icon name="arrow" size={12} /> 8% vs last week</div></div>
         <div class="metric"><div class="k">Grounded answers</div><div class="v">98.4<span style="font-size:16px;color:var(--text-muted)">%</span></div><div class="ctx">of 24.1k queries</div></div>
@@ -554,7 +547,7 @@ const principles = [
         <div class="metric"><div class="k">Uptime</div><div class="v">99.98<span style="font-size:16px;color:var(--text-muted)">%</span></div><div class="ctx">30-day rolling</div></div>
       </div>
 
-      <span class="label mt-12" style="display:block;">Content index</span>
+      <span class="label mt-8" style="display:block;">Content index</span>
       <div class="content-index mt-4">
         {[
           { n: "01", t: "Getting started", m: "/docs/start/", s: "Published", b: "badge-success" },
@@ -576,7 +569,7 @@ const principles = [
 
   {/* ============================ 15/16. TECHNICAL + TABLES ==================== */}
   <div class="container" id="technical">
-    <section class="section">
+    <section class="section is-dense">
       <div class="section-head">
         <span class="section-index">15</span>
         <div><span class="eyebrow">Interface</span><h2 class="h1 mt-2">Technical interface components</h2></div>
@@ -655,7 +648,7 @@ const principles = [
 
       {/* ------------ Tables & data displays ------------ */}
       <div id="tables">
-        <h3 class="h3 mt-12">Specification table</h3>
+        <h3 class="h3 mt-8">Specification table</h3>
         <div class="table-scroll mt-4">
           <table class="data-table">
             <thead>
@@ -719,7 +712,7 @@ const principles = [
     </section>
 
     {/* ============================ 18. ICONOGRAPHY ==================== */}
-    <section class="section" id="icons">
+    <section class="section is-dense" id="icons">
       <div class="section-head">
         <span class="section-index">17</span>
         <div><span class="eyebrow">Patterns</span><h2 class="h1 mt-2">Iconography</h2></div>
@@ -816,7 +809,7 @@ const principles = [
 
   {/* ============================ 22. COMPOSITIONS ==================== */}
   <div class="container" id="compositions">
-    <section class="section">
+    <section class="section is-open">
       <div class="section-head">
         <span class="section-index">21</span>
         <div><span class="eyebrow">Application</span><h2 class="h1 mt-2">Example page compositions</h2></div>
@@ -874,6 +867,16 @@ const principles = [
           <label class="toggle"><input type="checkbox" checked /><span class="track"></span> Toggle</label>
           <div class="progress" style="align-self:center"><span style="width:60%"></span></div>
         </div>
+        <div class="grid-2 mt-8" style="align-items:start;">
+          <div class="alert alert-info">
+            <span class="alert-icon"><Icon name="info" size={18} /></span>
+            <div><span class="alert-title">Deploy queued</span><p>The answer-engine layer regenerates once the build is live.</p></div>
+          </div>
+          <div class="alert alert-warning">
+            <span class="alert-icon"><Icon name="alert" size={18} /></span>
+            <div><span class="alert-title">2 non-blocking warnings</span><p>A CMS path collided with a static file — the static file wins.</p></div>
+          </div>
+        </div>
         <div class="meta-row mt-8">
           <div class="cell"><span class="k">Region</span><span class="v">us-east</span></div>
           <div class="cell"><span class="k">Model</span><span class="v">ac-answer-2</span></div>
@@ -889,7 +892,7 @@ const principles = [
 
 <style>
   .hero {
-    border-bottom: 1px solid var(--border-default);
+    padding-top: 96px;
   }
   .hero-grid {
     position: relative;
@@ -905,7 +908,6 @@ const principles = [
     gap: var(--space-12);
     margin: 0;
     padding-top: var(--space-6);
-    border-top: 1px solid var(--border-default);
   }
   .hero-stats div {
     display: flex;
@@ -949,7 +951,6 @@ const principles = [
   .usage-rules,
   .rule-list {
     list-style: none;
-    margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -1095,5 +1096,13 @@ const principles = [
     .comp-aside { border-left: 0; padding-left: 0; border-top: 1px solid var(--divider); padding-top: var(--space-4); }
     .type-row { flex-direction: column; align-items: flex-start; gap: var(--space-2); }
     .type-meta { align-items: flex-start; }
+  }
+  @media (max-width: 640px) {
+    .hero-inner { padding-block: var(--space-16) var(--space-12); }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6) var(--space-8);
+    }
   }
 </style>

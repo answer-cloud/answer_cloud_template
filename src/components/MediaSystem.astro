@@ -33,11 +33,33 @@ const avoid = [
       <span class="section-index">23</span>
       <div><span class="eyebrow">Visual assets</span><h2 class="h1 mt-2">Images & figures</h2></div>
     </div>
-    <p class="body reading muted" style="margin-bottom:var(--space-8)">
+    <p class="lede">
       Use images and figures as structured editorial content — to support explanation, evidence,
       product understanding, or technical storytelling. Every visual has a clear purpose; none is
       decorative filler.
     </p>
+
+    <figure class="figure" style="margin-bottom:var(--space-12)">
+      <div class="map-figure media--bleed">
+        <div class="media ratio-banner">
+          <img src="/assets/media/contour.svg" alt="Synoptic surface analysis: isobars around a low and high pressure center, a cold front, cyclonic wind arrows, and station markers with pressure labels in hectopascals." />
+        </div>
+        <aside class="map-panel">
+          <span class="eyebrow">Surface analysis · 12Z</span>
+          <p class="map-panel-title">Isobars &amp; stations</p>
+          <div class="map-legend">
+            <span><i class="wp"></i> Station</span>
+            <span><i class="ln"></i> Isobar</span>
+          </div>
+          <div class="map-coords mono">40.7°N · 74.0°W · 1012 hPa</div>
+        </aside>
+      </div>
+      <figcaption>
+        Imagery carries the visual weight the restrained type gives up. A framed synoptic chart with
+        an overlapping legend panel — a layered composition built from thin isobars, mono pressure
+        labels, and blue station markers used as the single accent.
+      </figcaption>
+    </figure>
 
     <div class="grid-2" style="align-items:start;">
       <div class="panel" style="padding:var(--space-6)">
@@ -76,7 +98,7 @@ const avoid = [
   </section>
 
   {/* ============================ ASPECT RATIOS ==================== */}
-  <section class="section" id="ratios">
+  <section class="section is-dense" id="ratios">
     <div class="section-head">
       <span class="section-index">24</span>
       <div><span class="eyebrow">Visual assets</span><h2 class="h1 mt-2">Image aspect ratios</h2></div>
@@ -101,7 +123,7 @@ const avoid = [
   </section>
 
   {/* ============================ FIGURES ==================== */}
-  <section class="section" id="figures">
+  <section class="section is-open" id="figures">
     <div class="section-head">
       <span class="section-index">25</span>
       <div><span class="eyebrow">Visual assets</span><h2 class="h1 mt-2">Figures</h2></div>
@@ -114,19 +136,19 @@ const avoid = [
     {/* Full-width editorial figure */}
     <figure class="figure">
       <span class="fig-label">Fig. 01</span>
-      <span class="fig-title">Answer-engine ingestion, from crawl to grounded response</span>
+      <span class="fig-title">Atmospheric profile — standard pressure levels</span>
       <div class="media ratio-banner">
-        <img src="/assets/media/strata.svg" alt="Layered schematic showing content passing through ingestion stages into a served answer layer." />
+        <img src="/assets/media/strata.svg" alt="Atmospheric profile: stacked pressure-level lines with a blue boundary layer." />
       </div>
       <figcaption>
-        Each layer is generated at deploy time from clean static HTML. Notice how the blue stratum
-        marks the retrieval boundary between stored content and live answers.
+        Standard pressure levels from 850 to 250 hPa. The freezing level is marked in blue — the
+        single accent against the thin gray isolines.
       </figcaption>
-      <span class="fig-source">Source — answer.cloud platform architecture, 2026</span>
+      <span class="fig-source">Source — answer.cloud forecast models, 12Z run</span>
     </figure>
 
     {/* Two-column text + image + narrow supporting */}
-    <div class="text-figure mt-12">
+    <div class="text-figure mt-8">
       <div>
         <span class="eyebrow">Two-column figure</span>
         <h3 class="h3 mt-2">Text beside imagery</h3>
@@ -138,13 +160,13 @@ const avoid = [
       </div>
       <figure class="figure">
         <div class="media ratio-3-2">
-          <img src="/assets/media/contour.svg" alt="Topographic contour field with one highlighted iso-line." />
+          <img src="/assets/media/datacenter.svg" alt="Wind field: streamlines of flow with wind barbs along the primary jet, in blue." />
         </div>
-        <figcaption>Editorial landscape · 3:2 · natural color retained.</figcaption>
+        <figcaption>Wind field · 3:2 · natural color retained.</figcaption>
       </figure>
     </div>
 
-    <div class="text-figure narrow-media mt-12">
+    <div class="text-figure narrow-media mt-8">
       <figure class="figure">
         <span class="fig-label">Fig. 02</span>
         <span class="fig-title">Anatomy of a figure</span>
@@ -173,62 +195,8 @@ const avoid = [
     </div>
   </section>
 
-  {/* ============================ SCREENSHOTS & ANNOTATIONS ==================== */}
-  <section class="section" id="annotations">
-    <div class="section-head">
-      <span class="section-index">26</span>
-      <div><span class="eyebrow">Visual assets</span><h2 class="h1 mt-2">Screenshots & annotations</h2></div>
-    </div>
-    <p class="body reading muted" style="margin-bottom:var(--space-8)">
-      Show realistic interface states with enough surrounding UI to stay understandable. Annotate
-      with numbered markers, thin leader lines, and small labels — never oversized arrows or
-      colorful callout boxes. Use a browser frame only when the environment itself matters.
-    </p>
-
-    <figure class="figure">
-      <span class="fig-label">Fig. 03</span>
-      <span class="fig-title">Annotated deploy overview</span>
-      <div class="screenshot">
-        <div class="chrome">
-          <span class="dots"><span></span><span></span><span></span></span>
-          <span class="addr">app.answer.cloud/sites/acme-research/deploys</span>
-        </div>
-        <div class="shot-body">
-          <div class="row" style="justify-content:space-between;align-items:flex-start">
-            <div>
-              <span class="eyebrow">Deploy dpl_8f2a1</span>
-              <h4 class="h4 mt-2">acme-research</h4>
-            </div>
-            <span class="badge badge-success annot-anchor-1"><span class="status-dot"></span>Live</span>
-          </div>
-          <div class="metric-grid mt-6" style="border:1px solid var(--border-subtle);grid-template-columns:repeat(3,1fr)">
-            <div class="metric annot-anchor-3"><div class="k">Live pages</div><div class="v">1,204</div></div>
-            <div class="metric"><div class="k">Warnings</div><div class="v">2</div></div>
-            <div class="metric"><div class="k">Chat p50</div><div class="v" style="font-size:20px">312ms</div></div>
-          </div>
-          <div class="row mt-6" style="justify-content:flex-end">
-            <button class="btn btn-secondary btn-sm" type="button">View log</button>
-            <button class="btn btn-primary btn-sm annot-anchor-2" type="button">Configure widget</button>
-          </div>
-
-          <div class="annot-layer">
-            <span class="annot" style="top:14px;right:18px">1</span>
-            <span class="annot" style="bottom:20px;right:24px">2</span>
-            <span class="annot secondary" style="top:96px;left:24px">3</span>
-          </div>
-        </div>
-      </div>
-      <ol class="annot-list">
-        <li><span class="n">1</span><span><strong>Status</strong> — deploy reached <span class="mono">live</span>; the answer-engine layer is regenerated.</span></li>
-        <li><span class="n">2</span><span><strong>Primary action</strong> — theme and configure the chat widget with the deployed stylesheet.</span></li>
-        <li class="secondary"><span class="n">3</span><span><strong>Coverage</strong> — indexed page count, a secondary reference metric.</span></li>
-      </ol>
-      <figcaption>Markers stay small and out of the content; the ordered list carries the explanation so nothing essential lives only inside the image.</figcaption>
-    </figure>
-  </section>
-
   {/* ============================ DIAGRAMS & SCHEMATICS ==================== */}
-  <section class="section" id="diagrams">
+  <section class="section is-dense" id="diagrams">
     <div class="section-head">
       <span class="section-index">27</span>
       <div><span class="eyebrow">Visual assets</span><h2 class="h1 mt-2">Diagrams & schematics</h2></div>
@@ -420,30 +388,46 @@ const avoid = [
   </section>
 
   {/* ============================ GRIDS, BACKGROUND, TREATMENT ==================== */}
-  <section class="section" id="image-grids">
+  <section class="section is-open" id="image-grids">
     <div class="section-head">
       <span class="section-index">30</span>
       <div><span class="eyebrow">Visual assets</span><h2 class="h1 mt-2">Grids, background & color treatment</h2></div>
     </div>
 
-    <span class="label">Mixed-width image grid · shared caption</span>
+    <span class="label">Detail paired with wider context</span>
+    <div class="text-figure mt-4">
+      <figure class="figure">
+        <div class="media ratio-4-3">
+          <img src="/assets/media/cooling.svg" alt="Meteogram: temperature curve in blue, dew point in gray, and precipitation bars over a 24-hour axis." />
+        </div>
+        <figcaption>A close-up detail — the meteogram: temperature, dew point, precipitation.</figcaption>
+      </figure>
+      <figure class="figure">
+        <div class="media ratio-4-3">
+          <img src="/assets/media/datacenter.svg" alt="The wider wind field the meteogram station sits within." />
+        </div>
+        <figcaption>…set against the wider wind field it belongs to. The pair establishes both intimacy and scale.</figcaption>
+      </figure>
+    </div>
+
+    <span class="label mt-8" style="display:block">Mixed-width image grid · shared caption</span>
     <figure class="figure mt-4">
       <div class="img-grid-mixed">
-        <div class="media ratio-4-3 span-rows"><img src="/assets/media/aperture.svg" alt="Concentric aperture study, primary image in the group." /></div>
-        <div class="media ratio-16-9"><img src="/assets/media/infrastructure.svg" alt="" /></div>
+        <div class="media media--dark ratio-4-3 span-rows"><img src="/assets/media/aperture.svg" alt="Concentric aperture study, the primary image in the group." /><span class="media__meta"><span class="dotc"></span>FIG. 07 · APERTURE</span></div>
+        <div class="media ratio-16-9"><img src="/assets/media/datacenter.svg" alt="" /></div>
         <div class="media ratio-16-9"><img src="/assets/media/contour.svg" alt="" /></div>
       </div>
       <figcaption>Editorial galleries align to the main grid with consistent gutters and a shared caption — not a masonry social feed.</figcaption>
     </figure>
 
-    <span class="label mt-12" style="display:block">Color treatment · one image, restrained variants</span>
+    <span class="label mt-8" style="display:block">Color treatment · one image, restrained variants by role</span>
     <div class="img-grid-3 treat-grid mt-4">
-      <figure class="figure"><div class="media ratio-3-2"><img class="treat-natural" src="/assets/media/contour.svg" alt="Contour field, natural color." /></div><figcaption>Natural color — default</figcaption></figure>
-      <figure class="figure"><div class="media ratio-3-2"><img class="treat-desat" src="/assets/media/contour.svg" alt="Contour field, slightly desaturated." /></div><figcaption>Slight desaturation</figcaption></figure>
-      <figure class="figure"><div class="media ratio-3-2 tint-blue"><img class="treat-blue" src="/assets/media/contour.svg" alt="Contour field, subtle blue tint for feature imagery." /></div><figcaption>Subtle blue tint — feature</figcaption></figure>
+      <figure class="figure"><div class="media media--dark ratio-3-2"><img class="treat-natural" src="/assets/media/aperture.svg" alt="Aperture study, natural color." /></div><figcaption>Natural — default</figcaption></figure>
+      <figure class="figure"><div class="media media--dark ratio-3-2"><img class="treat-mono" src="/assets/media/aperture.svg" alt="Aperture study, high-contrast monochrome." /></div><figcaption>Monochrome — secondary</figcaption></figure>
+      <figure class="figure"><div class="media media--dark ratio-3-2 tint-blue"><img class="treat-blue" src="/assets/media/aperture.svg" alt="Aperture study, subtle blue tint for feature imagery." /></div><figcaption>Blue tint — feature</figcaption></figure>
     </div>
 
-    <span class="label mt-12" style="display:block">Background image · text beside, not over</span>
+    <span class="label mt-8" style="display:block">Background image · text beside, not over</span>
     <div class="bg-band mt-4">
       <img src="/assets/media/aperture.svg" alt="" />
       <div class="overlay"></div>
@@ -457,7 +441,7 @@ const avoid = [
   </section>
 
   {/* ============================ IMAGE STATES + A11Y ==================== */}
-  <section class="section" id="image-states">
+  <section class="section is-dense" id="image-states">
     <div class="section-head">
       <span class="section-index">31</span>
       <div><span class="eyebrow">Visual assets</span><h2 class="h1 mt-2">Image states & accessibility</h2></div>
@@ -480,7 +464,7 @@ const avoid = [
         <span class="caption mt-2" style="display:block">Unsupported</span>
       </div>
       <div class="figure">
-        <div class="img-state ratio-4-3"><span class="progress" style="width:70%;align-self:stretch"><span style="width:60%"></span></span><span class="st-label">Processing…</span></div>
+        <div class="img-state ratio-4-3"><span class="progress" style="align-self:stretch"><span style="width:60%"></span></span><span class="st-label">Processing…</span></div>
         <span class="caption mt-2" style="display:block">Processing</span>
       </div>
       <div class="figure">
@@ -489,7 +473,7 @@ const avoid = [
       </div>
     </div>
 
-    <div class="panel mt-12" style="padding:var(--space-6)">
+    <div class="panel mt-8" style="padding:var(--space-6)">
       <span class="label">Accessibility rules</span>
       <ul class="rule-list mt-4" style="columns:2;column-gap:var(--space-12)">
         <li>Meaningful images carry descriptive <span class="mono">alt</span> text.</li>
@@ -514,6 +498,65 @@ const avoid = [
     align-items: baseline;
     justify-content: space-between;
     margin-top: var(--space-3);
+  }
+
+  /* Layered survey composition — framed map with an overlapping legend panel */
+  .map-figure {
+    position: relative;
+  }
+  .map-panel {
+    position: absolute;
+    left: var(--space-6);
+    bottom: var(--space-6);
+    width: min(320px, 62%);
+    background: var(--bg-page);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .map-panel-title {
+    font-size: var(--fs-body-sm);
+    font-weight: var(--fw-medium);
+    color: var(--text-primary);
+  }
+  .map-legend {
+    display: flex;
+    gap: var(--space-4);
+    font-family: var(--font-mono);
+    font-size: var(--fs-caption);
+    color: var(--text-secondary);
+  }
+  .map-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .map-legend .wp {
+    width: 9px;
+    height: 9px;
+    background: var(--color-accent-deep);
+    transform: rotate(45deg);
+    display: inline-block;
+  }
+  .map-legend .ln {
+    width: 16px;
+    border-top: 1px solid var(--border-strong);
+    display: inline-block;
+  }
+  .map-coords {
+    font-size: var(--fs-caption);
+    color: var(--text-muted);
+  }
+  @media (max-width: 640px) {
+    .map-panel {
+      position: static;
+      width: auto;
+      margin-top: -1px;
+      border-radius: 0 0 var(--radius) var(--radius);
+    }
   }
   .anatomy { border-top: 1px solid var(--divider); }
   .anatomy-row {
