@@ -209,7 +209,7 @@ const avoid = [
 
     <figure class="figure diagram scroll-x">
       <span class="fig-label">Fig. 04</span>
-      <span class="fig-title">Retrieval-grounded answer pipeline</span>
+      <span class="fig-title">How your pages become answers</span>
       <div class="media flush" style="border:0;background:transparent;overflow:visible">
         <svg viewBox="0 0 1000 300" xmlns="http://www.w3.org/2000/svg" role="img"
           aria-label="Pipeline: crawl, parse, embed, and index feed a retrieval, grounding, and answer path driven by a query.">
@@ -265,7 +265,7 @@ const avoid = [
         <span class="key"><i style="background:#667085"></i> Secondary flow</span>
         <span class="key"><i style="background:#f6f5f4;border:1px solid rgba(26,27,28,.16)"></i> Grouped stage</span>
       </div>
-      <figcaption>A query drives retrieval against the index, then grounding and answer generation. Diagram labels stay 11–14px; no gradients, shadows, or dimensional nodes.</figcaption>
+      <figcaption>A customer question drives retrieval against your indexed pages, then a grounded answer with citations — served on your site and inside LLMs. Diagram labels stay 11–14px; no gradients, shadows, or dimensional nodes.</figcaption>
     </figure>
   </section>
 
@@ -285,7 +285,7 @@ const avoid = [
       {/* Line / area chart */}
       <figure class="figure chart">
         <span class="fig-label">Fig. 05</span>
-        <span class="fig-title">Median answer latency is trending down</span>
+        <span class="fig-title">Median chat answer time is trending down</span>
         <svg viewBox="0 0 640 240" xmlns="http://www.w3.org/2000/svg" role="img"
           aria-label="Line chart of median latency over seven days, falling from 520ms to 312ms.">
           <g class="grid">
@@ -311,19 +311,19 @@ const avoid = [
           <circle cx="610" cy="201" r="4" fill="#0058ef"/>
           <text x="600" y="193" text-anchor="end" font-size="11" fill="#0058ef" font-weight="600">312ms</text>
         </svg>
-        <figcaption>p50 latency, 7-day window. A single accent series carries the one point the chart makes.</figcaption>
+        <figcaption>p50 answer time, 7-day window. A single accent series carries the one point the chart makes.</figcaption>
         <details class="chart-summary">
           <summary>Text summary</summary>
-          <p class="caption mt-2">Median latency fell from 520ms (Jul 12) to 312ms (Jul 18), a 40% reduction, with the steepest drop after the Jul 15 retrieval change.</p>
+          <p class="caption mt-2">Median chat answer time fell from 520ms (Jul 12) to 312ms (Jul 18), a 40% reduction, with the steepest drop after the Jul 15 index refresh.</p>
         </details>
       </figure>
 
       {/* Bar chart */}
       <figure class="figure chart">
         <span class="fig-label">Fig. 06</span>
-        <span class="fig-title">Where answered queries are grounded</span>
+        <span class="fig-title">Which pages LLMs cite most</span>
         <svg viewBox="0 0 640 240" xmlns="http://www.w3.org/2000/svg" role="img"
-          aria-label="Bar chart of grounded queries by source: Docs 9,800; API 6,400; Guides 4,200; Changelog 1,800; Blog 900.">
+          aria-label="Bar chart of citations by page group: Docs 9,800; API 6,400; Guides 4,200; Changelog 1,800; Blog 900.">
           <g class="grid">
             <line class="grid-line" x1="40" y1="30" x2="620" y2="30"/>
             <line class="grid-line" x1="40" y1="90" x2="620" y2="90"/>
@@ -352,7 +352,7 @@ const avoid = [
             <text x="562" y="226" text-anchor="middle">Blog</text>
           </g>
         </svg>
-        <figcaption>Docs dominate grounding — the accent bar — while the blog contributes least.</figcaption>
+        <figcaption>Docs are cited most — the accent bar — while the blog is cited least.</figcaption>
       </figure>
     </div>
   </section>
@@ -371,7 +371,7 @@ const avoid = [
       {[
         { n: "01", t: "Author in Astro", d: "Write semantic, question-shaped pages as .astro source.", src: "/assets/media/strata.svg" },
         { n: "02", t: "Build static HTML", d: "astro build emits the deploy artifact in dist/.", src: "/assets/media/infrastructure.svg" },
-        { n: "03", t: "Deploy & ground", d: "The platform generates llms.txt, mirrors, and the widget.", src: "/assets/media/contour.svg" },
+        { n: "03", t: "Deploy & publish", d: "The platform generates llms.txt, AI metadata, and the chat widget.", src: "/assets/media/contour.svg" },
       ].map((s) => (
         <div class="seq-step">
           <div class="seq-n">{s.n}</div>
@@ -433,7 +433,7 @@ const avoid = [
       <div class="overlay"></div>
       <div class="band-text">
         <span class="eyebrow" style="color:rgba(255,255,255,.75)">Research</span>
-        <h3 class="h3 mt-2" style="color:#fff">Grounding at scale</h3>
+        <h3 class="h3 mt-2" style="color:#fff">Answers at scale</h3>
         <p class="caption mt-2">Text sits in a quiet region over a subtle overlay, kept compact with verified contrast. On mobile it moves below the image.</p>
       </div>
     </div>

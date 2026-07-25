@@ -24,13 +24,13 @@ background-image:
 background-size: 140px 160px;`;
 
 const apiSnippet = `{
-  "model": "ac-answer-2",
-  "query": "How does retrieval grounding work?",
-  "grounded": true,
+  "site": "acme.answer.cloud",
+  "question": "Do you offer a free plan?",
+  "answered": true,
   "sources": [
-    { "id": "doc_8f2", "score": 0.94, "path": "/docs/rag/" }
+    { "path": "/pricing/", "title": "Pricing", "cited": true }
   ],
-  "latency_ms": 312
+  "surfaces": ["site", "chatgpt", "gemini"]
 }`;
 
 const typeScale = [
@@ -93,9 +93,9 @@ const principles = [
         <span class="eyebrow">Brand system · v1.0 · 2026</span>
         <h1 class="page-title mt-4">answer.cloud design system</h1>
         <p class="body-lg reading mt-6">
-          The default brand style guide for answer.cloud sites. A restrained, technical, and
-          editorial system for AI, infrastructure, and developer-focused products — built on a
-          compact type scale, a structured grid, and intentional use of blue.
+          The default brand style guide for answer.cloud sites — the platform that turns a website
+          into an answer engine. A restrained, technical, editorial system built on a compact type
+          scale, a structured grid, and intentional use of blue.
         </p>
         <div class="row mt-8">
           <a class="btn btn-primary" href="#color">Explore tokens <Icon name="arrow" size={14} /></a>
@@ -117,10 +117,11 @@ const principles = [
       </div>
       <div class="grid-2">
         <p class="body-lg reading">
-          answer.cloud is an answer engine for technical products. The visual language is quiet
-          and precise: it should feel intelligent and functional, closer to a reference manual
-          than a marketing page. Content sits directly on the page, aligned to a strong grid,
-          separated by thin rules rather than cards.
+          answer.cloud turns a website into an answer engine — your answers on your site and
+          inside LLMs like ChatGPT and Gemini. The visual language is quiet and precise: it should
+          feel intelligent and functional, closer to a reference manual than a marketing page.
+          Content sits directly on the page, aligned to a strong grid, separated by thin rules
+          rather than cards.
         </p>
         <div class="stack">
           <p class="body reading muted">
@@ -267,7 +268,7 @@ const principles = [
       <div class="type-scale mt-8">
         {typeScale.map((t) => (
           <div class="type-row">
-            <div class={t.cls}>Grounded answers for technical teams</div>
+            <div class={t.cls}>Your answers, everywhere customers ask</div>
             <div class="type-meta">
               <span class="mono">{t.name}</span>
               <span class="mono muted">{t.size} · {t.lh} · {t.w}</span>
@@ -432,9 +433,9 @@ const principles = [
           <span class="label">Links</span>
           <div class="stack mt-4">
             <p class="body">An <a class="link-inline" href="#">inline text link</a> inside running copy.</p>
-            <p><a class="link-arrow" href="#">Read the retrieval guide <Icon name="arrow" size={14} class="arrow" /></a></p>
+            <p><a class="link-arrow" href="#">Read the AEO guide <Icon name="arrow" size={14} class="arrow" /></a></p>
             <p><a class="link-util" href="#">Utility link</a></p>
-            <p><a class="link-ref" href="#">ac-answer-2 · model card</a></p>
+            <p><a class="link-ref" href="#">llms.txt · auto-generated</a></p>
           </div>
           <p class="caption mt-6">Interactivity is never signalled by color alone — underlines, borders, and arrow motion reinforce it.</p>
         </div>
@@ -490,8 +491,8 @@ const principles = [
         <div class="field">
           <span class="field-label">Options</span>
           <div class="stack" style="gap:var(--space-3)">
-            <label class="choice"><input type="checkbox" checked /> Ground answers in sources</label>
-            <label class="choice"><input type="checkbox" /> Allow web fallback</label>
+            <label class="choice"><input type="checkbox" checked /> Answer only from your content</label>
+            <label class="choice"><input type="checkbox" /> Surface answers in LLMs</label>
           </div>
         </div>
         <div class="field">
@@ -524,9 +525,9 @@ const principles = [
       <span class="label">Editorial rows</span>
       <div class="mt-4">
         {[
-          { c: "2026-07-18 · Research", t: "Retrieval grounding without re-ranking overhead", d: "How answer.cloud keeps citations tight while cutting median latency below 320ms." },
-          { c: "2026-06-30 · Engineering", t: "Static ingestion for answer engines", d: "The build pipeline that turns clean HTML into llms.txt, mirrors, and JSON-LD." },
-          { c: "2026-06-11 · Product", t: "Designing a chat widget that feels native", d: "Scoped theming so the assistant inherits a site's type, color, and focus treatment." },
+          { c: "2026-07-18 · Product", t: "Your answers, everywhere customers ask", d: "Serve your answers on your site and inside their favorite LLMs — ChatGPT, Gemini, and more." },
+          { c: "2026-06-30 · Engineering", t: "Build a website designed for AI discovery", d: "Auto-generate llms.txt, AI metadata, and the supporting files answer engines read." },
+          { c: "2026-06-11 · Product", t: "See what AI knows about you", d: "Track AI agent activity and human visits — then fix what the models get wrong." },
         ].map((r, i) => (
           <div class="editorial-row">
             <div class="cat">{r.c}</div>
@@ -541,19 +542,19 @@ const principles = [
 
       <span class="label mt-8" style="display:block;">Metric modules</span>
       <div class="metric-grid mt-4">
-        <div class="metric"><div class="k">Median latency</div><div class="v">312<span style="font-size:16px;color:var(--text-muted)">ms</span></div><div class="ctx trend-down"><Icon name="arrow" size={12} /> 8% vs last week</div></div>
-        <div class="metric"><div class="k">Grounded answers</div><div class="v">98.4<span style="font-size:16px;color:var(--text-muted)">%</span></div><div class="ctx">of 24.1k queries</div></div>
-        <div class="metric"><div class="k">Indexed pages</div><div class="v">1,204</div><div class="ctx trend-up"><Icon name="arrow-up-right" size={12} /> +36 today</div></div>
-        <div class="metric"><div class="k">Uptime</div><div class="v">99.98<span style="font-size:16px;color:var(--text-muted)">%</span></div><div class="ctx">30-day rolling</div></div>
+        <div class="metric"><div class="k">Answers served</div><div class="v">24.1<span style="font-size:16px;color:var(--text-muted)">k</span></div><div class="ctx trend-up"><Icon name="arrow-up-right" size={12} /> 12% this week</div></div>
+        <div class="metric"><div class="k">Answer coverage</div><div class="v">98.4<span style="font-size:16px;color:var(--text-muted)">%</span></div><div class="ctx">of questions asked</div></div>
+        <div class="metric"><div class="k">Pages LLMs cite</div><div class="v">1,204</div><div class="ctx trend-up"><Icon name="arrow-up-right" size={12} /> +36 today</div></div>
+        <div class="metric"><div class="k">AI agent visits</div><div class="v">3,480</div><div class="ctx trend-up"><Icon name="arrow-up-right" size={12} /> +18% crawlers</div></div>
       </div>
 
       <span class="label mt-8" style="display:block;">Content index</span>
       <div class="content-index mt-4">
         {[
           { n: "01", t: "Getting started", m: "/docs/start/", s: "Published", b: "badge-success" },
-          { n: "02", t: "Retrieval & grounding", m: "/docs/rag/", s: "Published", b: "badge-success" },
-          { n: "03", t: "Widget theming", m: "/docs/widget/", s: "Draft", b: "badge-warning" },
-          { n: "04", t: "API reference", m: "/docs/api/", s: "In review", b: "badge-info" },
+          { n: "02", t: "Answer Engine Optimization", m: "/docs/aeo/", s: "Published", b: "badge-success" },
+          { n: "03", t: "Chat widget", m: "/docs/widget/", s: "Draft", b: "badge-warning" },
+          { n: "04", t: "Agent analytics", m: "/docs/analytics/", s: "In review", b: "badge-info" },
         ].map((r) => (
           <div class="index-row">
             <div class="n">{r.n}</div>
@@ -591,7 +592,7 @@ const principles = [
         </div>
 
         <div class="code-block">
-          <div class="code-head"><span class="caption mono">POST /api/answer · 200</span><span class="badge badge-success"><span class="status-dot"></span>200 OK</span></div>
+          <div class="code-head"><span class="caption mono">POST /api/messages · 200</span><span class="badge badge-success"><span class="status-dot"></span>200 OK</span></div>
           <pre>{apiSnippet}</pre>
         </div>
       </div>
@@ -617,12 +618,12 @@ const principles = [
         </div>
 
         <div>
-          <span class="label">Model selector</span>
+          <span class="label">Answer model</span>
           <div class="menu mt-3">
-            <div class="menu-search"><Icon name="search" size={14} /> Select a model…</div>
-            <div class="menu-item" aria-selected="true"><Icon name="check" size={14} /> ac-answer-2 <span class="meta">grounded · fast</span></div>
-            <div class="menu-item"><Icon name="bolt" size={14} class="muted" /> ac-answer-2-mini <span class="meta">low latency</span></div>
-            <div class="menu-item"><Icon name="grid" size={14} class="muted" /> ac-reason-1 <span class="meta">preview</span></div>
+            <div class="menu-search"><Icon name="search" size={14} /> Choose the model for chat…</div>
+            <div class="menu-item" aria-selected="true"><Icon name="check" size={14} /> Auto <span class="meta">best per question</span></div>
+            <div class="menu-item"><Icon name="bolt" size={14} class="muted" /> ChatGPT <span class="meta">OpenAI</span></div>
+            <div class="menu-item"><Icon name="grid" size={14} class="muted" /> Gemini <span class="meta">Google</span></div>
           </div>
 
           <span class="label mt-8" style="display:block;">Command menu</span>
@@ -648,17 +649,16 @@ const principles = [
 
       {/* ------------ Tables & data displays ------------ */}
       <div id="tables">
-        <h3 class="h3 mt-8">Specification table</h3>
+        <h3 class="h3 mt-8">Plan comparison</h3>
         <div class="table-scroll mt-4">
           <table class="data-table">
             <thead>
-              <tr><th>Model</th><th>Context</th><th>Latency (p50)</th><th class="num">Cost / 1M</th><th>Status</th></tr>
+              <tr><th>Plan</th><th>On-site chat</th><th>Agent analytics</th><th class="num">Pages</th><th class="num">Price</th></tr>
             </thead>
             <tbody>
-              <tr><td><span class="mono">ac-answer-2</span></td><td>128k</td><td>312ms</td><td class="num">$3.00</td><td><span class="badge badge-success"><span class="status-dot"></span>GA</span></td></tr>
-              <tr><td><span class="mono">ac-answer-2-mini</span></td><td>64k</td><td>148ms</td><td class="num">$0.80</td><td><span class="badge badge-success"><span class="status-dot"></span>GA</span></td></tr>
-              <tr><td><span class="mono">ac-reason-1</span></td><td>200k</td><td>1,020ms</td><td class="num">$8.00</td><td><span class="badge badge-warning"><span class="status-dot"></span>Preview</span></td></tr>
-              <tr><td><span class="mono">ac-embed-1</span></td><td>—</td><td>22ms</td><td class="num">$0.02</td><td><span class="badge badge-neutral"><span class="status-dot"></span>Legacy</span></td></tr>
+              <tr><td>Free</td><td>Included</td><td>—</td><td class="num">12</td><td class="num">$0</td></tr>
+              <tr><td>Answer Engine <span class="badge badge-info"><span class="status-dot"></span>Popular</span></td><td>Included</td><td>Basic</td><td class="num">500</td><td class="num">$100/mo</td></tr>
+              <tr><td>+ Agent Analytics</td><td>Included</td><td>Full</td><td class="num">500</td><td class="num">Custom</td></tr>
             </tbody>
           </table>
         </div>
@@ -696,8 +696,8 @@ const principles = [
           <div class="screen">
             <div class="menu" style="box-shadow:none;border-color:var(--border-default)">
               <div class="menu-item">Overview</div>
-              <div class="menu-item" aria-selected="true">Retrieval</div>
-              <div class="menu-item">Widget</div>
+              <div class="menu-item" aria-selected="true">Answers</div>
+              <div class="menu-item">Chat</div>
             </div>
           </div>
         </div>
@@ -818,12 +818,12 @@ const principles = [
       <div class="comp gradient-section-transition">
         <div class="comp-inner">
           <span class="eyebrow">Documentation</span>
-          <h3 class="h2 mt-2">Retrieval & grounding</h3>
-          <p class="body reading muted mt-3">Ground every answer in your own content. This page pairs a reading column with a sticky spec sidebar — the editorial default for docs.</p>
+          <h3 class="h2 mt-2">Answer Engine Optimization</h3>
+          <p class="body reading muted mt-3">Turn your content into answers customers get on your site and inside LLMs. This page pairs a reading column with a sticky spec sidebar — the editorial default for docs.</p>
           <div class="comp-doc mt-6">
             <div class="reading">
-              <h4 class="h4">How grounding works</h4>
-              <p class="body mt-2">Queries are embedded, matched against your indexed pages, and answered with inline citations. <a class="link-inline" href="#">See the API →</a></p>
+              <h4 class="h4">How answers are served</h4>
+              <p class="body mt-2">Your published pages become answers — in your site's chat and inside ChatGPT, Gemini, and other LLMs, with citations back to you. <a class="link-inline" href="#">See the API →</a></p>
               <div class="meta-row mt-6">
                 <div class="cell"><span class="k">Updated</span><span class="v">Jul 18, 2026</span></div>
                 <div class="cell"><span class="k">Read</span><span class="v">6 min</span></div>
@@ -831,8 +831,8 @@ const principles = [
             </div>
             <aside class="comp-aside">
               <span class="label">On this page</span>
-              <a class="link-util mt-3" href="#" style="display:block">How grounding works</a>
-              <a class="link-util" href="#" style="display:block">Citation format</a>
+              <a class="link-util mt-3" href="#" style="display:block">How answers are served</a>
+              <a class="link-util" href="#" style="display:block">llms.txt &amp; AI metadata</a>
               <a class="link-util" href="#" style="display:block">Limits</a>
             </aside>
           </div>
@@ -870,7 +870,7 @@ const principles = [
         <div class="grid-2 mt-8" style="align-items:start;">
           <div class="alert alert-info">
             <span class="alert-icon"><Icon name="info" size={18} /></span>
-            <div><span class="alert-title">Deploy queued</span><p>The answer-engine layer regenerates once the build is live.</p></div>
+            <div><span class="alert-title">Deploy queued</span><p>The answer engine layer — llms.txt, AI metadata, chat — regenerates once the build is live.</p></div>
           </div>
           <div class="alert alert-warning">
             <span class="alert-icon"><Icon name="alert" size={18} /></span>
@@ -879,7 +879,7 @@ const principles = [
         </div>
         <div class="meta-row mt-8">
           <div class="cell"><span class="k">Region</span><span class="v">us-east</span></div>
-          <div class="cell"><span class="k">Model</span><span class="v">ac-answer-2</span></div>
+          <div class="cell"><span class="k">Plan</span><span class="v">Answer Engine</span></div>
           <div class="cell"><span class="k">Version</span><span class="v">1.0.0</span></div>
         </div>
       </div>
@@ -888,11 +888,100 @@ const principles = [
   </div>
 
   <MediaSystem />
+
+  {/* ============================ 32. AI CHAT EXPERIENCE ==================== */}
+  <div class="container">
+    <section class="section is-open" id="chat">
+      <div class="section-head">
+        <span class="section-index">32</span>
+        <div><span class="eyebrow">Product</span><h2 class="h1 mt-2">AI chat experience</h2></div>
+      </div>
+      <p class="lede">
+        answer.cloud injects a conversational chat widget into every site — the launcher, the answer
+        window, and the loading state. These are themed from the same tokens as
+        <span class="mono">public/assets/answercloud-chat.css</span>, the stylesheet the platform
+        loads into the host page and the chat iframe.
+      </p>
+
+      <div class="chat-showcase">
+        <div>
+          <span class="label">Launcher</span>
+          <div class="row mt-4" style="align-items:center;gap:var(--space-6)">
+            <button class="chat-launcher" type="button">
+              <span class="chat-launcher__icon"><Icon name="sparkle" size={16} /></span>
+              Ask a question
+            </button>
+            <button class="chat-launcher chat-launcher--icon" type="button" aria-label="Open chat">
+              <span class="chat-launcher__icon"><Icon name="message" size={20} /></span>
+            </button>
+          </div>
+          <p class="caption mt-4">
+            Floating action button — accent-deep fill, pill or circular, with a soft float shadow
+            (the one place shadows are allowed). Hover lifts 1px; focus shows the accent ring.
+          </p>
+
+          <span class="label mt-12" style="display:block">Loading state</span>
+          <div class="chat-loading-demo mt-4">
+            <div class="chat-status"><span class="spin" aria-hidden="true"></span> Searching your pages…</div>
+            <div class="chat-typing" role="status" aria-label="Assistant is typing">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+          <p class="caption mt-4">
+            A status line while retrieving, then an animated three-dot typing bubble while the answer
+            streams. Both honor <span class="mono">prefers-reduced-motion</span>.
+          </p>
+        </div>
+
+        <div class="chat-stage">
+          <div class="chat-window" role="dialog" aria-label="Ask acme chat">
+            <div class="chat-head">
+              <span class="chat-mark" aria-hidden="true"></span>
+              <span class="chat-id">
+                <span class="chat-title">Ask Acme</span>
+                <span class="chat-sub">Powered by answer.cloud</span>
+              </span>
+              <span class="chat-actions">
+                <button class="chat-iconbtn" type="button" aria-label="Clear conversation"><Icon name="refresh" size={16} /></button>
+                <button class="chat-iconbtn" type="button" aria-label="Close chat"><Icon name="x" size={16} /></button>
+              </span>
+            </div>
+
+            <div class="chat-body">
+              <div class="chat-msg chat-msg--user">Do you offer a free plan?</div>
+
+              <div class="chat-msg chat-msg--assistant">
+                <p>Yes. The <strong>Free</strong> plan includes on-site chat and up to 12 indexed pages
+                at no cost. Paid plans start at $100/mo and raise the limit to 500 pages.</p>
+                <div class="chat-refs">
+                  <a class="chat-ref" href="#"><span class="n">1</span> /pricing/</a>
+                  <a class="chat-ref" href="#"><span class="n">2</span> /docs/plans/</a>
+                </div>
+              </div>
+
+              <div class="chat-msg chat-msg--user">How do answers show up in ChatGPT?</div>
+
+              <div class="chat-status"><span class="spin" aria-hidden="true"></span> Searching your pages…</div>
+              <div class="chat-typing" role="status" aria-label="Assistant is typing">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+
+            <div class="chat-composer">
+              <input class="chat-input" type="text" placeholder="Ask a question…" aria-label="Ask a question" />
+              <button class="chat-send" type="button" aria-label="Send"><Icon name="send" size={16} /></button>
+            </div>
+            <div class="chat-attribution">Answers by <a href="#">answer.cloud</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </StyleGuide>
 
 <style>
   .hero {
-    padding-top: 96px;
+    padding-top: 84px;
   }
   .hero-grid {
     position: relative;
@@ -1010,7 +1099,7 @@ const principles = [
 
   .grid-preview {
     position: relative;
-    min-height: 220px;
+    min-height: 206px;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius);
     background: var(--bg-gray);
