@@ -988,7 +988,7 @@ kbd,
 
 .feature-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(var(--feature-columns, 3), minmax(0, 1fr));
   gap: 0;
   border: 1px solid var(--border-subtle);
 }
@@ -1155,8 +1155,7 @@ kbd,
 /* Icon demo */
 .icon-row {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  flex-wrap: wrap;
+  grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
   gap: var(--space-6);
   align-items: center;
 }

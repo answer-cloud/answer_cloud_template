@@ -1,0 +1,26 @@
+---
+interface Props { enabled?: boolean }
+const { enabled = true } = Astro.props;
+---
+<site-motion data-enabled={String(enabled)}><slot /></site-motion>
+<style>site-motion { display: contents; }</style>
+<script>
+  class SiteMotionElement extends HTMLElement {
+    private cleanup?: () => void;
+    private generation = 0;
+    async connectedCallback() {
+      if (this.dataset.enabled === 'false') return;
+      const generation = ++this.generation;
+      try {
+        const { setupMotion } = await import('../scripts/motion');
+        if (this.isConnected && generation === this.generation) this.cleanup = setupMotion(this);
+      } catch { /* Static HTML remains usable if the animation bundle cannot load. */ }
+    }
+    disconnectedCallback() {
+      this.generation++;
+      this.cleanup?.();
+      this.cleanup = undefined;
+    }
+  }
+  if (!customElements.get('site-motion')) customElements.define('site-motion', SiteMotionElement);
+</script>
