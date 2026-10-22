@@ -1,7 +1,7 @@
 /* =========================================================================
    answer.cloud — Design Tokens
    The single source of truth for the default site design system.
-   Restrained, technical, editorial. Maximum type size: 32px.
+   Expressive display typography, readable content, and adaptable motion.
    ========================================================================= */
 
 :root {
@@ -74,9 +74,9 @@
   --font-mono: "JetBrains Mono", "SF Mono", ui-monospace, "Cascadia Code",
     "Roboto Mono", Menlo, Consolas, monospace;
 
-  /* Type scale — nothing exceeds 32px */
-  --fs-page-title: 32px;
-  --fs-h1: 28px;
+  /* Fluid display type; body and utility text retain a readable scale. */
+  --fs-page-title: clamp(2.5rem, 6vw, 5.5rem);
+  --fs-h1: clamp(1.75rem, 3vw, 2.75rem);
   --fs-h2: 24px;
   --fs-h3: 20px;
   --fs-h4: 18px;
@@ -160,6 +160,11 @@
   --dur-fast: 150ms;
   --dur: 200ms;
   --dur-slow: 250ms;
+  /* GSAP values are unitless seconds / CSS pixels. */
+  --motion-duration: 0.7;
+  --motion-stagger: 0.1;
+  --motion-distance: 24;
+  --motion-ease: power2.out;
 }
 
 /* Tablet gutter */
@@ -169,12 +174,10 @@
   }
 }
 
-/* Mobile gutter + type caps (nothing over 28px on small screens) */
+/* Mobile spacing; fluid display type continues to scale naturally. */
 @media (max-width: 640px) {
   :root {
     --gutter: 20px;
-    --fs-page-title: 28px; /* 32 → 28 */
-    --fs-h1: 26px; /* 28 → 26 */
     --section-space: var(--space-12); /* 64 → 48 */
     --section-space-open: var(--space-16); /* 80 → 64 */
     --section-space-dense: var(--space-8); /* 48 → 32 */
