@@ -1,0 +1,11 @@
+---
+import Icon from './Icon.astro';
+import '../styles/step-previews.css';
+---
+<div class="delivery-summary" role="img" aria-label="Website refresh is ready to share: design approved, feedback resolved, and all steps complete.">
+  <div class="delivery-summary-header"><span class="delivery-summary-status"><span></span>Ready to share</span><Icon name="external" size={13}/></div>
+  <strong class="delivery-summary-title">Website refresh</strong>
+  <div class="delivery-summary-items"><div><span class="delivery-summary-check"><Icon name="check" size={11}/></span>Design approved</div><div><span class="delivery-summary-check"><Icon name="check" size={11}/></span>Feedback resolved</div></div>
+  <div class="delivery-summary-progress" aria-hidden="true"><span></span></div>
+  <div class="delivery-summary-footer"><span>All steps complete</span><span class="delivery-summary-avatars" aria-hidden="true"><i>JL</i><i>AK</i></span></div>
+</div>

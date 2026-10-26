@@ -1,0 +1,51 @@
+---
+import Icon from './Icon.astro';
+import '../styles/workspace.css';
+const columns = [
+  { name: 'To do', state: 'todo', tasks: [
+    { category: 'Design', tone: 'lilac', title: 'A fresh direction', description: 'A clearer first impression, from the first hello.', visual: 'website', person: 'AK', avatar: 'lilac', date: 'Today', comments: 2 },
+    { category: 'Content', tone: 'peach', title: 'Find the right words', description: 'A little less noise. A lot more us.', person: 'JL', avatar: 'peach', date: 'Tomorrow', comments: 3 },
+  ]},
+  { name: 'In progress', state: 'progress', tasks: [
+    { category: 'Product', tone: 'blue', title: 'Build our design system', description: 'One shared language for every screen.', visual: 'checklist', person: 'MS', avatar: 'mint', date: '2 of 3 complete', comments: 4 },
+    { category: 'Design', tone: 'lilac', title: 'The finishing touches', description: 'Good details make the whole thing feel right.', visual: 'palette', person: 'AK', avatar: 'lilac', date: 'Friday', comments: 2 },
+  ]},
+  { name: 'Done', state: 'done', tasks: [
+    { category: 'Strategy', tone: 'mint', title: 'A clearer project brief', description: 'The big picture, beautifully in focus.', person: 'JL', avatar: 'peach', date: 'Complete', comments: 3 },
+    { category: 'Research', tone: 'mint', title: 'Our best ideas, together', description: 'A few bright ideas. One good direction.', person: 'MS', avatar: 'mint', date: 'Complete', comments: 5 },
+  ]},
+];
+---
+<div class="workspace workspace-showcase" role="img" aria-label="SaaaaS project workspace showing the Website refresh project, its progress, and an organized task board.">
+  <div class="showcase-browser" aria-hidden="true"><span class="showcase-window-dots"><i></i><i></i><i></i></span><span class="showcase-address"><span class="showcase-lock"></span>app.saaaas.com / projects</span><Icon name="plus" size={12}/></div>
+  <div class="showcase-body" aria-hidden="true">
+    <div class="showcase-sidebar">
+      <div class="showcase-brand"><span class="showcase-brand-icon"><Icon name="grid" size={15}/></span><span>SaaaaS<small>Team workspace</small></span><Icon name="chevron" size={11}/></div>
+      <div class="showcase-search"><Icon name="search" size={13}/><span>Quick find</span><kbd>⌘ K</kbd></div>
+      <div class="showcase-nav"><span><Icon name="grid" size={14}/>Overview</span><span class="is-selected"><Icon name="folder" size={14}/>Projects<b>3</b></span><span><Icon name="message" size={14}/>Inbox<i></i></span></div>
+      <span class="showcase-sidebar-label">YOUR PROJECTS</span>
+      <div class="showcase-projects"><span class="is-current"><i class="is-lilac"></i>Website refresh</span><span><i class="is-peach"></i>The next big thing</span><span><i class="is-mint"></i>Little experiments</span></div>
+      <div class="showcase-profile"><span class="showcase-avatar is-peach">JL</span><span>Jamie Lee<small>Personal workspace</small></span><Icon name="chevron" size={11}/></div>
+    </div>
+    <div class="showcase-content">
+      <div class="showcase-breadcrumb"><span>Projects</span><Icon name="chevron-right" size={10}/><span>Website refresh</span><span class="showcase-status"><i></i>On track</span></div>
+      <div class="showcase-heading"><div><span class="showcase-eyebrow">A LITTLE FOCUS GOES A LONG WAY</span><h2>Website refresh</h2><p>A shared space for our next chapter.</p></div><div class="showcase-team"><span class="showcase-members"><i class="is-peach">JL</i><i class="is-lilac">AK</i><i class="is-mint">MS</i></span><span class="showcase-share">Share<Icon name="arrow-up-right" size={12}/></span></div></div>
+      <div class="showcase-progress"><span>Project progress<strong>2 of 6 complete</strong></span><span class="showcase-progress-track"><i></i></span><b>33%</b></div>
+      <div class="showcase-toolbar"><div class="showcase-views"><span class="is-selected"><Icon name="grid" size={12}/>Board</span><span>List</span><span>Timeline</span></div><span class="showcase-filter"><Icon name="filter" size={12}/>Filter<span></span><Icon name="chevron" size={11}/>Sort</span><span class="showcase-add"><Icon name="plus" size={12}/>New task</span></div>
+      <div class="showcase-board">
+        {columns.map(column => <div class:list={['showcase-column', `showcase-column-${column.state}`]}>
+          <div class="showcase-column-heading"><span><i></i>{column.name}<b>{column.tasks.length}</b></span><Icon name="plus" size={12}/></div>
+          {column.tasks.map(task => <div class:list={['showcase-task', {'is-complete': column.state === 'done'}]}>
+            <div class="showcase-task-top"><span class:list={['showcase-tag', `is-${task.tone}`]}>{task.category}</span>{column.state === 'done' ? <span class="showcase-done"><Icon name="check" size={11}/></span> : <span class="showcase-ellipsis">···</span>}</div>
+            <h3>{task.title}</h3><p>{task.description}</p>
+            {task.visual === 'website' && <div class="showcase-website"><div class="showcase-mini-nav"><b>SaaaaS.</b><span></span><span></span><i></i></div><div class="showcase-mini-page"><div><strong>Make room<br/>for better.</strong><span></span><i></i></div><div class="showcase-mini-art"><i></i><i></i><i></i></div></div></div>}
+            {task.visual === 'checklist' && <div class="showcase-checklist"><span class="is-done"><i><Icon name="check" size={9}/></i>Color & typography</span><span class="is-done"><i><Icon name="check" size={9}/></i>Core components</span><span><i></i>Interaction details</span><span class="showcase-task-meter"><i></i></span></div>}
+            {task.visual === 'palette' && <div class="showcase-palette"><i></i><i></i><i></i><i></i><span>Made for us.</span></div>}
+            <div class="showcase-task-footer"><span><Icon name={column.state === 'done' ? 'check' : 'message'} size={10}/>{column.state === 'done' ? 'Complete' : task.comments}</span><span class="showcase-task-date">{column.state === 'done' ? 'Just now' : task.date}</span><span class:list={['showcase-avatar', `is-${task.avatar}`]}>{task.person}</span></div>
+          </div>)}
+        </div>)}
+      </div>
+      <div class="showcase-footer"><span><Icon name="check" size={11}/>All changes saved</span><span>6 tasks<i>·</i>3 teammates</span></div>
+    </div>
+  </div>
+</div>

@@ -2,25 +2,119 @@
 interface Props { enabled?: boolean }
 const { enabled = true } = Astro.props;
 ---
-<site-motion data-enabled={String(enabled)}><slot /></site-motion>
-<style>site-motion { display: contents; }</style>
+
+<site-motion data-enabled={String(enabled)} data-motion-state="static"><slot /></site-motion>
+
+<style>
+  site-motion { display: contents; }
+</style>
+
 <script>
   class SiteMotionElement extends HTMLElement {
     private cleanup?: () => void;
+    private cancelStart?: () => void;
+    private preference?: MediaQueryList;
     private generation = 0;
-    async connectedCallback() {
-      if (this.dataset.enabled === 'false') return;
-      const generation = ++this.generation;
-      try {
-        const { setupMotion } = await import('../scripts/motion');
-        if (this.isConnected && generation === this.generation) this.cleanup = setupMotion(this);
-      } catch { /* Static HTML remains usable if the animation bundle cannot load. */ }
-    }
-    disconnectedCallback() {
+    private pageHidden = false;
+
+    private stop() {
       this.generation++;
+      this.cancelStart?.();
+      this.cancelStart = undefined;
       this.cleanup?.();
       this.cleanup = undefined;
+      this.dataset.motionState = 'static';
+    }
+
+    private canStart(generation: number) {
+      return generation === this.generation && this.isConnected && !this.pageHidden
+        && this.dataset.enabled !== 'false' && !this.preference?.matches;
+    }
+
+    private syncMotion() {
+      this.stop();
+      if (!this.isConnected || this.pageHidden || this.dataset.enabled === 'false') return;
+      if (this.preference?.matches) {
+        this.dataset.motionState = 'reduced';
+        return;
+      }
+
+      const generation = this.generation;
+      this.dataset.motionState = 'deferred';
+      let cancelled = false;
+      let started = false;
+      let idle: number | undefined;
+      let timer: number | undefined;
+      const intentEvents = ['wheel', 'touchstart', 'keydown', 'scroll'] as const;
+
+      const clearWaiters = () => {
+        window.removeEventListener('load', afterLoad);
+        intentEvents.forEach(event => window.removeEventListener(event, begin));
+        if (idle !== undefined) window.cancelIdleCallback?.(idle);
+        if (timer !== undefined) window.clearTimeout(timer);
+      };
+      const begin = () => {
+        if (cancelled || started || !this.canStart(generation)) return;
+        started = true;
+        clearWaiters();
+        this.cancelStart = undefined;
+        void this.startMotion(generation);
+      };
+      const afterLoad = () => {
+        if (cancelled || !this.canStart(generation)) return;
+        // Motion does not compete with the initial page, stylesheet, or font load.
+        // A visitor who starts exploring can bypass the idle wait after load.
+        intentEvents.forEach(event => window.addEventListener(event, begin, { passive: true, once: true }));
+        if (typeof window.requestIdleCallback === 'function') {
+          idle = window.requestIdleCallback(begin, { timeout: 1800 });
+        } else {
+          timer = window.setTimeout(begin, 220);
+        }
+      };
+
+      this.cancelStart = () => { cancelled = true; clearWaiters(); };
+      if (document.readyState === 'complete') afterLoad();
+      else window.addEventListener('load', afterLoad, { once: true });
+    }
+
+    private async startMotion(generation: number) {
+      if (!this.canStart(generation)) return;
+      this.dataset.motionState = 'loading';
+      try {
+        // Reduced-motion visitors never need to download GSAP or ScrollTrigger.
+        const { setupMotion } = await import('../scripts/motion');
+        if (!this.canStart(generation)) return;
+        this.cleanup = setupMotion(this);
+      } catch {
+        // Every element is visible in the original HTML; a failed import stays static.
+        if (generation === this.generation) this.dataset.motionState = 'static';
+      }
+    }
+
+    private onPreferenceChange = () => { this.syncMotion(); };
+    private onPageHide = () => { this.pageHidden = true; this.stop(); };
+    private onPageShow = () => {
+      if (!this.pageHidden) return;
+      this.pageHidden = false;
+      this.syncMotion();
+    };
+
+    connectedCallback() {
+      this.pageHidden = false;
+      this.preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+      this.preference.addEventListener('change', this.onPreferenceChange);
+      window.addEventListener('pagehide', this.onPageHide);
+      window.addEventListener('pageshow', this.onPageShow);
+      this.syncMotion();
+    }
+
+    disconnectedCallback() {
+      this.stop();
+      this.preference?.removeEventListener('change', this.onPreferenceChange);
+      window.removeEventListener('pagehide', this.onPageHide);
+      window.removeEventListener('pageshow', this.onPageShow);
     }
   }
+
   if (!customElements.get('site-motion')) customElements.define('site-motion', SiteMotionElement);
 </script>

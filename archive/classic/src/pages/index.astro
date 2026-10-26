@@ -1,0 +1,1214 @@
+---
+import StyleGuide from "../layouts/StyleGuide.astro";
+import Icon from "../components/Icon.astro";
+import MediaSystem from "../components/MediaSystem.astro";
+import HeroScene from "../components/HeroScene.astro";
+import SiteMotion from "../components/SiteMotion.astro";
+
+// Code snippets kept as constants so literal braces render cleanly.
+const gradAtmosphere = `background:
+  radial-gradient(
+    ellipse 200% 100% at 50% 50%,
+    #ffffff 0%,
+    rgba(255,255,255,0) 80%
+  ),
+  linear-gradient(
+    180deg,
+    #0058ef 0%,
+    rgba(255,255,255,0.8) 60%
+  );`;
+
+const gridSnippet = `--grid-line: rgba(26, 27, 28, 0.08);
+
+background-image:
+  linear-gradient(var(--grid-line) 1px, transparent 1px),
+  linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+background-size: 140px 160px;`;
+
+const apiSnippet = `{
+  "site": "acme.answer.cloud",
+  "question": "Do you offer a free plan?",
+  "answered": true,
+  "sources": [
+    { "path": "/pricing/", "title": "Pricing", "cited": true }
+  ],
+  "surfaces": ["site", "chatgpt", "gemini"]
+}`;
+
+const typeScale = [
+  { name: "Page title", cls: "page-title", size: "40–88px", lh: "1.15", w: "600" },
+  { name: "Heading 1", cls: "h1", size: "28–44px", lh: "1.2", w: "600" },
+  { name: "Heading 2", cls: "h2", size: "24px", lh: "1.25", w: "500" },
+  { name: "Heading 3", cls: "h3", size: "20px", lh: "1.3", w: "500" },
+  { name: "Heading 4", cls: "h4", size: "18px", lh: "1.35", w: "500" },
+  { name: "Large body", cls: "body-lg", size: "18px", lh: "1.5", w: "400" },
+  { name: "Body", cls: "body", size: "16px", lh: "1.55", w: "400" },
+  { name: "Small body", cls: "body-sm", size: "14px", lh: "1.5", w: "400" },
+  { name: "Caption", cls: "caption", size: "12px", lh: "1.4", w: "400" },
+];
+
+const palette = [
+  { name: "Accent", val: "#2E7BFF", var: "--color-accent" },
+  { name: "Accent deep", val: "#0058EF", var: "--color-accent-deep" },
+  { name: "Ink", val: "#1A1B1C", var: "--color-ink" },
+  { name: "Muted", val: "#667085", var: "--color-muted" },
+  { name: "Cream", val: "#F6F5F4", var: "--color-cream" },
+  { name: "Gray", val: "#F7F8F9", var: "--color-gray" },
+  { name: "White", val: "#FFFFFF", var: "--color-white" },
+];
+
+const semantic = [
+  ["Primary text", "--text-primary", "#1A1B1C"],
+  ["Secondary text", "--text-secondary", "#3A3D40"],
+  ["Muted text", "--text-muted", "#667085"],
+  ["Page background", "--bg-page", "#FFFFFF"],
+  ["Alt section bg", "--bg-alt", "#F6F5F4"],
+  ["Border subtle", "--border-subtle", "rgba(26,27,28,.10)"],
+  ["Border default", "--border-default", "rgba(26,27,28,.16)"],
+  ["Divider", "--divider", "rgba(26,27,28,.10)"],
+  ["Interactive", "--interactive", "#0058EF"],
+  ["Focus ring", "--focus-ring", "rgba(46,123,255,.45)"],
+  ["Disabled", "--disabled-text", "#A2A9B3"],
+  ["Success", "--success", "#147A4B"],
+  ["Warning", "--warning", "#9A6400"],
+  ["Error", "--error", "#C0362C"],
+];
+
+const spacing = [4, 8, 12, 16, 24, 32, 48, 64, 80, 96];
+
+const principles = [
+  { n: "01", t: "A clear visual idea", d: "Choose a composition, palette, and imagery that express the organization behind the page." },
+  { n: "02", t: "Expressive typography", d: "Fluid headlines set the pace; readable body copy carries the details." },
+  { n: "03", t: "A palette with purpose", d: "Adapt the sample palette to the brief, keeping actions and focus clear." },
+  { n: "04", t: "Motion with rhythm", d: "A tailored 3D scene and coordinated entrances add depth while content stays immediately usable." },
+];
+---
+
+<StyleGuide
+  title="answer.cloud — Brand style guide & UI design system"
+  description="The default brand style guide and UI design system for answer.cloud sites: color, typography, layout, components, and technical interface patterns."
+>
+  <SiteMotion>
+  <section class="hero expressive-hero">
+    <div class="container expressive-grid">
+      <div>
+        <span class="eyebrow" data-hero-reveal>Shape your next idea</span>
+        <h1 class="page-title mt-4" data-hero-reveal>Make a lasting impression.</h1>
+        <p class="body-lg reading mt-6" data-hero-reveal>
+          A living design system for websites with character. Bring your story into focus
+          with expressive typography, dimensional visuals, and a rhythm all your own.
+        </p>
+        <div class="row mt-8" data-hero-reveal>
+          <a class="btn btn-primary" href="#motion">Explore motion <Icon name="arrow" size={14} /></a>
+          <a class="btn btn-secondary" href="#components">Explore components</a>
+        </div>
+      </div>
+      <HeroScene preset="sculpture" />
+    </div>
+  </section>
+
+  {/* ============================ 2. BRAND OVERVIEW ==================== */}
+  <div class="container">
+    <section data-reveal class="section" id="brand" style="border-top:0;">
+      <div class="section-head">
+        <span class="section-index">01</span>
+        <div>
+          <span class="eyebrow">Foundations</span>
+          <h2 class="h1 mt-2">Brand overview</h2>
+        </div>
+      </div>
+      <div class="grid-2">
+        <p class="body-lg reading">
+          answer.cloud turns a website into an answer engine — your answers on your site and
+          inside LLMs like ChatGPT and Gemini. Start with a visual idea grounded in the
+          organization: a confident headline, a distinctive scene, and content arranged to
+          help visitors understand and act. Keep real answers in the page HTML.
+        </p>
+        <div class="stack">
+          <p class="body reading muted">
+            Use these components as a starting point for new standalone sites. Adapt the palette,
+            composition, and scene to the brief. Honor existing brands and requests for a
+            quieter design; CMS companion pages can retain their reading-focused layouts.
+          </p>
+          <div class="meta-row">
+            <div class="cell"><span class="k">Voice</span><span class="v">Technical, exact</span></div>
+            <div class="cell"><span class="k">Density</span><span class="v">High, readable</span></div>
+            <div class="cell"><span class="k">Tone</span><span class="v">Editorial</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ============================ 3. PRINCIPLES ==================== */}
+    <section class="section" id="principles">
+      <div class="section-head">
+        <span class="section-index">02</span>
+        <div><span class="eyebrow">Foundations</span><h2 class="h1 mt-2">Design principles</h2></div>
+      </div>
+      <div class="feature-grid" style="--feature-columns:4;">
+        {principles.map((p) => (
+          <div class="feature-module">
+            <div class="idx">{p.n}</div>
+            <h3>{p.t}</h3>
+            <p>{p.d}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {/* ============================ 4. LOGO ==================== */}
+    <section class="section" id="logo">
+      <div class="section-head">
+        <span class="section-index">03</span>
+        <div><span class="eyebrow">Foundations</span><h2 class="h1 mt-2">Logo & usage</h2></div>
+      </div>
+      <div class="grid-3">
+        <div class="panel logo-tile">
+          <span class="logo-lockup">
+            <span class="brand-mark-lg"></span>
+            <span>answer<span style="color:var(--color-accent)">.</span>cloud</span>
+          </span>
+          <span class="caption">Primary lockup — light</span>
+        </div>
+        <div class="panel logo-tile" style="background:var(--bg-inverse);color:#fff;">
+          <span class="logo-lockup" style="color:#fff;">
+            <span class="brand-mark-lg"></span>
+            <span>answer<span style="color:var(--color-accent)">.</span>cloud</span>
+          </span>
+          <span class="caption" style="color:rgba(255,255,255,.6)">On ink</span>
+        </div>
+        <div class="panel logo-tile">
+          <span class="brand-mark-lg" style="width:40px;height:40px;"></span>
+          <span class="caption">Mark only — favicons, avatars</span>
+        </div>
+      </div>
+      <ul class="usage-rules mt-6">
+        <li><Icon name="check" size={16} class="ok" /> Keep clear space of at least the mark height on all sides.</li>
+        <li><Icon name="check" size={16} class="ok" /> Use the mark alone below 24px lockup width.</li>
+        <li><Icon name="x" size={16} class="no" /> Do not recolor the mark, add shadows, or stretch the lockup.</li>
+      </ul>
+      <p class="caption mt-4">Placeholder mark — replace with the production logo asset.</p>
+    </section>
+  </div>
+
+  {/* ============================ 5. COLOR ==================== */}
+  <div class="container">
+    <section data-reveal class="section" id="color">
+      <div class="section-head">
+        <span class="section-index">04</span>
+        <div><span class="eyebrow">Tokens</span><h2 class="h1 mt-2">Color palette</h2></div>
+      </div>
+      <p class="body reading muted" style="margin-bottom:var(--space-8)">
+        A neutral core with one intentional blue. Blue signals action, selection, links, focus,
+        and small accents — it does not coat every component.
+      </p>
+      <div class="swatch-grid">
+        {palette.map((c) => (
+          <div class="swatch">
+            <div class="chip" style={`background:${c.val}`}></div>
+            <div class="name">{c.name}</div>
+            <div class="val">{c.val}</div>
+            <div class="val">{c.var}</div>
+          </div>
+        ))}
+      </div>
+
+      <h3 class="h3 mt-8">Semantic tokens</h3>
+      <div class="table-scroll mt-4">
+        <table class="token-table">
+          <thead>
+            <tr><th>Role</th><th>Token</th><th>Value</th><th></th></tr>
+          </thead>
+          <tbody>
+            {semantic.map((s) => (
+              <tr>
+                <td>{s[0]}</td>
+                <td><span class="mono">{s[1]}</span></td>
+                <td><span class="mono">{s[2]}</span></td>
+                <td><span class="dot" style={`background:${s[2]}`}></span></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    {/* ============================ 6. TYPOGRAPHY ==================== */}
+    <section data-reveal class="section" id="typography">
+      <div class="section-head">
+        <span class="section-index">05</span>
+        <div><span class="eyebrow">Tokens</span><h2 class="h1 mt-2">Typography</h2></div>
+      </div>
+      <div class="grid-2" style="align-items:start;">
+        <div>
+          <span class="label">Primary typeface</span>
+          <div class="specimen mt-3">Instrument Sans</div>
+          <p class="body muted reading mt-3">
+            Used for headings, body, navigation, labels, buttons, and interface. A monospace
+            (JetBrains Mono) is reserved for code, commands, status values, and metadata.
+          </p>
+          <div class="row mt-4">
+            <span class="tag">Regular 400</span>
+            <span class="tag">Medium 500</span>
+            <span class="tag">Semibold 600</span>
+            <span class="tag mono">Mono 400/500</span>
+          </div>
+        </div>
+        <div class="panel" style="padding:var(--space-6)">
+          <span class="label">Rules</span>
+          <ul class="rule-list mt-3">
+            <li>Scale display headlines fluidly; check wrapping at narrow widths.</li>
+            <li>Keep heading steps small; use weight and rules for hierarchy.</li>
+            <li>Sentence case for headings; uppercase only for small labels.</li>
+            <li>Left-align headings; keep comfortable reading widths.</li>
+            <li>Subtle negative tracking on headings only.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="type-scale mt-8">
+        {typeScale.map((t) => (
+          <div class="type-row">
+            <div class={t.cls}>Your answers, everywhere customers ask</div>
+            <div class="type-meta">
+              <span class="mono">{t.name}</span>
+              <span class="mono muted">{t.size} · {t.lh} · {t.w}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  </div>
+
+  {/* ============================ 7. GRADIENTS ==================== */}
+  <div class="container">
+    <section class="section" id="gradients">
+      <div class="section-head">
+        <span class="section-index">06</span>
+        <div><span class="eyebrow">Surfaces</span><h2 class="h1 mt-2">Gradient system</h2></div>
+      </div>
+      <div class="grid-3">
+        <div><div class="gradient-box gradient-accent"></div><p class="caption mt-3">Accent — 135°, #2E7BFF → #0058EF</p></div>
+        <div><div class="gradient-box bg-atmosphere"></div><p class="caption mt-3">Blue atmosphere — layered radial + linear</p></div>
+        <div><div class="gradient-box gradient-accent-fade" style="background-color:#fff;"></div><p class="caption mt-3">Accent fade — for section accents</p></div>
+        <div><div class="gradient-box gradient-soft-surface"></div><p class="caption mt-3">Soft surface — white → cream</p></div>
+        <div><div class="gradient-box gradient-section-transition"></div><p class="caption mt-3">Section transition — blue 8% → white</p></div>
+        <div class="code-block">
+          <div class="code-head"><span class="caption mono">blue-atmosphere.css</span><Icon name="copy" size={14} class="muted" /></div>
+          <pre>{gradAtmosphere}</pre>
+        </div>
+      </div>
+      <p class="caption mt-6">Use gradients for backgrounds and transitions — never as default text, card, or button fills.</p>
+    </section>
+
+    {/* ============================ 7b. GRID / BACKGROUNDS ==================== */}
+    <section class="section" id="backgrounds">
+      <div class="section-head">
+        <span class="section-index">07</span>
+        <div><span class="eyebrow">Surfaces</span><h2 class="h1 mt-2">Grid & background treatments</h2></div>
+      </div>
+      <div class="grid-2" style="align-items:start;">
+        <div class="grid-preview grid-faded">
+          <div class="grid-preview-label"><span class="label">Technical grid</span><p class="caption mt-2">Thin, low-contrast, fades at edges. Behind selected sections only.</p></div>
+        </div>
+        <div class="code-block">
+          <div class="code-head"><span class="caption mono">grid.css</span><Icon name="copy" size={14} class="muted" /></div>
+          <pre>{gridSnippet}</pre>
+        </div>
+      </div>
+    </section>
+
+    {/* ============================ 8. LAYOUT GRID ==================== */}
+    <section class="section" id="layout">
+      <div class="section-head">
+        <span class="section-index">08</span>
+        <div><span class="eyebrow">Structure</span><h2 class="h1 mt-2">Layout grid</h2></div>
+      </div>
+      <div class="col-demo">
+        {Array.from({ length: 12 }).map((_, i) => <div class="cell">{i + 1}</div>)}
+      </div>
+      <div class="meta-row mt-8">
+        <div class="cell"><span class="k">Page max</span><span class="v">1440px</span></div>
+        <div class="cell"><span class="k">Content</span><span class="v">1200–1280px</span></div>
+        <div class="cell"><span class="k">Reading</span><span class="v">640–720px</span></div>
+        <div class="cell"><span class="k">Gutters</span><span class="v">40 / 32 / 20</span></div>
+        <div class="cell"><span class="k">Columns</span><span class="v">12 / 6 / 4</span></div>
+      </div>
+      <p class="caption mt-4">Resize the viewport — the demo grid collapses 12 → 6 → 4 columns at tablet and mobile breakpoints.</p>
+    </section>
+
+    {/* ============================ 9. SPACING ==================== */}
+    <section class="section is-dense" id="spacing">
+      <div class="section-head">
+        <span class="section-index">09</span>
+        <div><span class="eyebrow">Structure</span><h2 class="h1 mt-2">Spacing system</h2></div>
+      </div>
+      <div class="space-demo">
+        {spacing.map((s) => (
+          <div class="item">
+            <div class="bar" style={`height:${s}px`}></div>
+            <div class="mt-2">{s}</div>
+          </div>
+        ))}
+      </div>
+      <p class="body muted reading mt-8">
+        A single scale of 4 → 96 governs inline gaps, component padding, gutters, and section
+        spacing. Major sections use 64–96px vertically; technical interfaces use the smaller
+        steps to stay dense.
+      </p>
+    </section>
+
+    {/* ============================ 10. BORDERS / DIVIDERS ==================== */}
+    <section class="section is-dense" id="borders">
+      <div class="section-head">
+        <span class="section-index">10</span>
+        <div><span class="eyebrow">Structure</span><h2 class="h1 mt-2">Borders & dividers</h2></div>
+      </div>
+      <div class="demo-grid">
+        <div class="demo-tile"><div class="box" style="border-color:var(--border-subtle);background:transparent;"></div>--border-subtle · .10</div>
+        <div class="demo-tile"><div class="box" style="border-color:var(--border-default);background:transparent;"></div>--border-default · .16</div>
+        <div class="demo-tile"><div class="box" style="border-color:var(--border-strong);background:transparent;"></div>--border-strong · .28</div>
+        <div class="demo-tile" style="background:var(--bg-inverse);color:rgba(255,255,255,.7)"><div class="box" style="border-color:var(--border-inverse);background:transparent;"></div>--border-inverse</div>
+      </div>
+      <p class="caption mt-6">Prefer borders and background changes over shadows to separate content.</p>
+    </section>
+
+    {/* ============================ 11. RADII / SHADOWS ==================== */}
+    <section class="section" id="radii">
+      <div class="section-head">
+        <span class="section-index">11</span>
+        <div><span class="eyebrow">Structure</span><h2 class="h1 mt-2">Corner radii & shadows</h2></div>
+      </div>
+      <div class="grid-2" style="align-items:start;">
+        <div>
+          <span class="label">Radii</span>
+          <div class="demo-grid mt-4">
+            <div class="demo-tile"><div class="box" style="border-radius:2px"></div>Small · 2px</div>
+            <div class="demo-tile"><div class="box" style="border-radius:4px"></div>Standard · 4px</div>
+            <div class="demo-tile"><div class="box" style="border-radius:8px"></div>Large · 8px</div>
+            <div class="demo-tile"><div class="box" style="border-radius:999px;height:32px;"></div>Pill · tags only</div>
+          </div>
+        </div>
+        <div>
+          <span class="label">Shadows — float only</span>
+          <div class="shadow-demo mt-4">
+            <div class="shadow-tile" style="box-shadow:var(--shadow-popover)">Popover / dropdown</div>
+            <div class="shadow-tile" style="box-shadow:var(--shadow-modal)">Modal</div>
+          </div>
+          <p class="caption mt-4">Never apply shadows to ordinary cards, sections, buttons, or inputs.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  {/* ============================ 12. BUTTONS & LINKS ==================== */}
+  <div class="container" id="components">
+    <section class="section is-dense" id="buttons">
+      <div class="section-head">
+        <span class="section-index">12</span>
+        <div><span class="eyebrow">Components</span><h2 class="h1 mt-2">Buttons & links</h2></div>
+      </div>
+      <div class="grid-2" style="align-items:start;">
+        <div>
+          <span class="label">Variants</span>
+          <div class="row mt-4">
+            <button class="btn btn-primary">Primary</button>
+            <button class="btn btn-secondary">Secondary</button>
+            <button class="btn btn-outline">Outline</button>
+            <button class="btn btn-text">Text link</button>
+            <button class="btn btn-icon" aria-label="Add"><Icon name="plus" size={16} /></button>
+            <button class="btn btn-destructive">Delete</button>
+            <button class="btn btn-secondary" disabled>Disabled</button>
+          </div>
+          <span class="label mt-8" style="display:block;">Primary — states</span>
+          <div class="row mt-4">
+            <button class="btn btn-primary">Default</button>
+            <button class="btn btn-primary" style="background:var(--interactive-hover)">Hover</button>
+            <button class="btn btn-primary" style="background:var(--interactive-active)">Active</button>
+            <button class="btn btn-primary" style="outline:2px solid var(--focus-outline);outline-offset:2px;">Focus</button>
+            <button class="btn btn-primary" disabled>Disabled</button>
+          </div>
+          <p class="caption mt-6">Compact, rectangular, ≤44px tall, 13–14px medium text. No gradient fills or heavy shadows.</p>
+        </div>
+        <div>
+          <span class="label">Links</span>
+          <div class="stack mt-4">
+            <p class="body">An <a class="link-inline" href="#">inline text link</a> inside running copy.</p>
+            <p><a class="link-arrow" href="#">Read the AEO guide <Icon name="arrow" size={14} class="arrow" /></a></p>
+            <p><a class="link-util" href="#">Utility link</a></p>
+            <p><a class="link-ref" href="#">llms.txt · auto-generated</a></p>
+          </div>
+          <p class="caption mt-6">Interactivity is never signalled by color alone — underlines, borders, and arrow motion reinforce it.</p>
+        </div>
+      </div>
+    </section>
+
+    {/* ============================ 13. FORMS ==================== */}
+    <section class="section is-dense" id="forms">
+      <div class="section-head">
+        <span class="section-index">13</span>
+        <div><span class="eyebrow">Components</span><h2 class="h1 mt-2">Form elements</h2></div>
+      </div>
+      <div class="grid-3" style="align-items:start;">
+        <div class="field">
+          <label class="field-label" for="f1">Workspace name</label>
+          <input class="input" id="f1" type="text" placeholder="acme-research" />
+          <p class="field-hint">Lowercase, DNS-safe. Used in your subdomain.</p>
+        </div>
+        <div class="field">
+          <label class="field-label" for="f2">Search</label>
+          <div class="search-input">
+            <span class="search-icon"><Icon name="search" size={16} /></span>
+            <input class="input" id="f2" type="search" placeholder="Search documentation" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label" for="f3">Region</label>
+          <div class="select-wrap">
+            <select class="select" id="f3">
+              <option>us-east</option><option>eu-west</option><option>ap-south</option>
+            </select>
+            <span class="chevron"><Icon name="chevron" size={16} /></span>
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label" for="f4">API key</label>
+          <input class="input is-error" id="f4" type="text" value="aeo_host_xxx" aria-invalid="true" />
+          <p class="field-error-text"><Icon name="alert" size={14} /> Key is invalid or expired.</p>
+        </div>
+        <div class="field">
+          <label class="field-label" for="f5">Custom domain</label>
+          <input class="input" id="f5" type="text" value="ai.acme.com" />
+          <p class="field-success-text"><Icon name="check" size={14} /> Domain verified.</p>
+        </div>
+        <div class="field">
+          <label class="field-label" for="f6">Disabled</label>
+          <input class="input" id="f6" type="text" value="Managed by org" disabled />
+        </div>
+        <div class="field" style="grid-column:1 / -1;">
+          <label class="field-label" for="f7">System prompt</label>
+          <textarea class="textarea" id="f7" placeholder="Answer strictly from provided sources…"></textarea>
+        </div>
+        <div class="field">
+          <span class="field-label">Options</span>
+          <div class="stack" style="gap:var(--space-3)">
+            <label class="choice"><input type="checkbox" checked /> Answer only from your content</label>
+            <label class="choice"><input type="checkbox" /> Surface answers in LLMs</label>
+          </div>
+        </div>
+        <div class="field">
+          <span class="field-label">Index mode</span>
+          <div class="stack" style="gap:var(--space-3)">
+            <label class="choice"><input type="radio" name="idx" checked /> Incremental</label>
+            <label class="choice"><input type="radio" name="idx" /> Full re-index</label>
+          </div>
+        </div>
+        <div class="field">
+          <span class="field-label">Chat widget</span>
+          <label class="toggle mt-2"><input type="checkbox" checked /><span class="track"></span> Enabled</label>
+          <div class="file-upload mt-6">
+            <Icon name="file" size={18} class="muted" />
+            <div class="body-sm">Drop <span class="mono">llms.txt</span> override<br /><span class="caption">or click to browse</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  {/* ============================ 14. EDITORIAL PATTERNS ==================== */}
+  <div class="container">
+    <section class="section is-open" id="editorial">
+      <div class="section-head">
+        <span class="section-index">14</span>
+        <div><span class="eyebrow">Modules</span><h2 class="h1 mt-2">Editorial content patterns</h2></div>
+      </div>
+
+      <span class="label">Editorial rows</span>
+      <div class="mt-4">
+        {[
+          { c: "2026-07-18 · Product", t: "Your answers, everywhere customers ask", d: "Serve your answers on your site and inside their favorite LLMs — ChatGPT, Gemini, and more." },
+          { c: "2026-06-30 · Engineering", t: "Build a website designed for AI discovery", d: "Auto-generate llms.txt, AI metadata, and the supporting files answer engines read." },
+          { c: "2026-06-11 · Product", t: "See what AI knows about you", d: "Track AI agent activity and human visits — then fix what the models get wrong." },
+        ].map((r, i) => (
+          <div class="editorial-row">
+            <div class="cat">{r.c}</div>
+            <div class="body-col">
+              <div class="title">{r.t}</div>
+              <p class="desc body-sm">{r.d}</p>
+            </div>
+            <a class="link-arrow" href="#">Read <Icon name="arrow" size={14} class="arrow" /></a>
+          </div>
+        ))}
+      </div>
+
+      <span class="label mt-8" style="display:block;">Metric modules</span>
+      <div class="metric-grid mt-4">
+        <div class="metric"><div class="k">Answers served</div><div class="v">24.1<span style="font-size:16px;color:var(--text-muted)">k</span></div><div class="ctx trend-up"><Icon name="arrow-up-right" size={12} /> 12% this week</div></div>
+        <div class="metric"><div class="k">Answer coverage</div><div class="v">98.4<span style="font-size:16px;color:var(--text-muted)">%</span></div><div class="ctx">of questions asked</div></div>
+        <div class="metric"><div class="k">Pages LLMs cite</div><div class="v">1,204</div><div class="ctx trend-up"><Icon name="arrow-up-right" size={12} /> +36 today</div></div>
+        <div class="metric"><div class="k">AI agent visits</div><div class="v">3,480</div><div class="ctx trend-up"><Icon name="arrow-up-right" size={12} /> +18% crawlers</div></div>
+      </div>
+
+      <span class="label mt-8" style="display:block;">Content index</span>
+      <div class="content-index mt-4">
+        {[
+          { n: "01", t: "Getting started", m: "/docs/start/", s: "Published", b: "badge-success" },
+          { n: "02", t: "Answer Engine Optimization", m: "/docs/aeo/", s: "Published", b: "badge-success" },
+          { n: "03", t: "Chat widget", m: "/docs/widget/", s: "Draft", b: "badge-warning" },
+          { n: "04", t: "Agent analytics", m: "/docs/analytics/", s: "In review", b: "badge-info" },
+        ].map((r) => (
+          <div class="index-row">
+            <div class="n">{r.n}</div>
+            <div class="t">{r.t}</div>
+            <div class="m">{r.m}</div>
+            <div><span class={`badge ${r.b}`}><span class="status-dot"></span>{r.s}</span></div>
+            <a href="#" aria-label="Open" class="link-util"><Icon name="chevron-right" size={16} /></a>
+          </div>
+        ))}
+      </div>
+    </section>
+  </div>
+
+  {/* ============================ 15/16. TECHNICAL + TABLES ==================== */}
+  <div class="container" id="technical">
+    <section class="section is-dense">
+      <div class="section-head">
+        <span class="section-index">15</span>
+        <div><span class="eyebrow">Interface</span><h2 class="h1 mt-2">Technical interface components</h2></div>
+      </div>
+
+      <div class="grid-2" style="align-items:start;">
+        <div class="terminal">
+          <div class="terminal-bar">
+            <span class="dots"><span></span><span></span><span></span></span>
+            <span class="title">bash — answer.cloud</span>
+          </div>
+          <div class="terminal-body">
+            <div><span class="prompt">$</span> aeo deploy --site acme-research</div>
+            <div class="comment"># building static artifact…</div>
+            <div><span class="ok">✓</span> 1,204 pages · llms.txt · sitemap.xml</div>
+            <div><span class="ok">✓</span> widget injected · chat healthy</div>
+            <div><span class="warn">!</span> 2 warnings — run <span class="prompt">aeo warnings</span></div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <div class="code-head"><span class="caption mono">POST /api/messages · 200</span><span class="badge badge-success"><span class="status-dot"></span>200 OK</span></div>
+          <pre>{apiSnippet}</pre>
+        </div>
+      </div>
+
+      <div class="grid-2 mt-8" style="align-items:start;">
+        <div>
+          <span class="label">System log</span>
+          <div class="log mt-3">
+            <div class="log-row"><span class="ts">10:24:01</span><span class="lvl-info">INFO</span><span>ingest: crawl started (1,204 urls)</span></div>
+            <div class="log-row"><span class="ts">10:24:07</span><span class="lvl-ok">OK</span><span>index: 1,204 docs embedded</span></div>
+            <div class="log-row"><span class="ts">10:24:09</span><span class="lvl-warn">WARN</span><span>cms_path_collision: /resources/</span></div>
+            <div class="log-row"><span class="ts">10:24:11</span><span class="lvl-err">ERR</span><span>widget: css_path 404 (retry 1/3)</span></div>
+          </div>
+          <span class="label mt-8" style="display:block;">File tree</span>
+          <div class="file-tree mt-3">
+            <div class="row dir"><Icon name="folder" size={14} /> src/</div>
+            <div class="row indent dir"><Icon name="folder" size={14} /> pages/</div>
+            <div class="row indent-2"><Icon name="file" size={14} /> index.astro</div>
+            <div class="row indent-2"><Icon name="file" size={14} /> docs/[slug].astro</div>
+            <div class="row indent"><Icon name="file" size={14} /> styles/tokens.css</div>
+            <div class="row"><Icon name="file" size={14} /> aeo-cms.json</div>
+          </div>
+        </div>
+
+        <div>
+          <span class="label">Answer model</span>
+          <div class="menu mt-3">
+            <div class="menu-search"><Icon name="search" size={14} /> Choose the model for chat…</div>
+            <div class="menu-item" aria-selected="true"><Icon name="check" size={14} /> Auto <span class="meta">best per question</span></div>
+            <div class="menu-item"><Icon name="bolt" size={14} class="muted" /> ChatGPT <span class="meta">OpenAI</span></div>
+            <div class="menu-item"><Icon name="grid" size={14} class="muted" /> Gemini <span class="meta">Google</span></div>
+          </div>
+
+          <span class="label mt-8" style="display:block;">Command menu</span>
+          <div class="menu mt-3">
+            <div class="menu-search"><Icon name="terminal" size={14} /> Type a command…</div>
+            <div class="menu-item"><Icon name="plus" size={14} class="muted" /> New collection <span class="meta"><kbd>C</kbd></span></div>
+            <div class="menu-item" aria-selected="true"><Icon name="external" size={14} /> Open deploy log <span class="meta"><kbd>⌘</kbd><kbd>L</kbd></span></div>
+          </div>
+
+          <div class="tabs mt-8" role="tablist">
+            <button class="tab" role="tab" aria-selected="true">Overview</button>
+            <button class="tab" role="tab" aria-selected="false">Sources</button>
+            <button class="tab" role="tab" aria-selected="false">Logs</button>
+          </div>
+          <div class="meta-row" style="border-top:0;margin-top:var(--space-4)">
+            <div class="cell"><span class="k">Deploy</span><span class="v">dpl_8f2a1</span></div>
+            <div class="cell"><span class="k">Status</span><span class="v" style="color:var(--success)">live</span></div>
+            <div class="cell"><span class="k">Progress</span></div>
+          </div>
+          <div class="progress mt-3"><span style="width:78%"></span></div>
+        </div>
+      </div>
+
+      {/* ------------ Tables & data displays ------------ */}
+      <div id="tables">
+        <h3 class="h3 mt-8">Plan comparison</h3>
+        <div class="table-scroll mt-4">
+          <table class="data-table">
+            <thead>
+              <tr><th>Plan</th><th>On-site chat</th><th>Agent analytics</th><th class="num">Pages</th><th class="num">Price</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Free</td><td>Included</td><td>—</td><td class="num">12</td><td class="num">$0</td></tr>
+              <tr><td>Answer Engine <span class="badge badge-info"><span class="status-dot"></span>Popular</span></td><td>Included</td><td>Basic</td><td class="num">500</td><td class="num">$100/mo</td></tr>
+              <tr><td>+ Agent Analytics</td><td>Included</td><td>Full</td><td class="num">500</td><td class="num">Custom</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  {/* ============================ 17. NAVIGATION ==================== */}
+  <div class="container">
+    <section class="section" id="navigation">
+      <div class="section-head">
+        <span class="section-index">16</span>
+        <div><span class="eyebrow">Patterns</span><h2 class="h1 mt-2">Navigation</h2></div>
+      </div>
+      <div class="nav-demo">
+        <div class="nav-demo-bar">
+          <span class="row" style="gap:var(--space-2)"><span class="brand-mark-lg" style="width:16px;height:16px;"></span><strong>answer.cloud</strong></span>
+          <span class="row" style="gap:var(--space-6);margin-left:var(--space-8)">
+            <a class="link-util" href="#">Product</a><a class="link-util" href="#">Docs</a><a class="link-util" href="#">Pricing</a><a class="link-util" href="#">Research</a>
+          </span>
+          <span class="row" style="margin-left:auto;gap:var(--space-3)"><span class="caption mono muted">3 / 4</span><a class="btn btn-primary btn-sm" href="#">Sign in</a></span>
+        </div>
+      </div>
+      <p class="caption mt-4">Desktop navigation — logo left, concise links, small section index, one compact action right. 56–72px tall, defined by borders not shadows.</p>
+
+      <div class="grid-3 mt-8">
+        <div class="device" style="max-width:280px">
+          <div class="bar">Mobile — collapsed</div>
+          <div class="screen">
+            <div class="mini-nav"><strong>answer.cloud</strong><Icon name="menu" size={14} /></div>
+          </div>
+        </div>
+        <div class="device" style="max-width:280px">
+          <div class="bar">Dropdown</div>
+          <div class="screen">
+            <div class="menu" style="box-shadow:none;border-color:var(--border-default)">
+              <div class="menu-item">Overview</div>
+              <div class="menu-item" aria-selected="true">Answers</div>
+              <div class="menu-item">Chat</div>
+            </div>
+          </div>
+        </div>
+        <div class="device" style="max-width:280px">
+          <div class="bar">Sticky (scrolled)</div>
+          <div class="screen">
+            <div class="mini-nav" style="border-color:var(--border-strong)"><strong>answer.cloud</strong><span class="caption mono">Docs</span></div>
+            <div class="mini-line"></div><div class="mini-line short"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ============================ 18. ICONOGRAPHY ==================== */}
+    <section class="section is-dense" id="icons">
+      <div class="section-head">
+        <span class="section-index">17</span>
+        <div><span class="eyebrow">Patterns</span><h2 class="h1 mt-2">Iconography</h2></div>
+      </div>
+      <div class="icon-row">
+        {["arrow","arrow-up-right","chevron","chevron-right","search","check","x","plus","alert","info","terminal","copy","file","folder","menu","filter","external","bolt","grid"].map((n) => (
+          <div class="icon-cell"><Icon name={n} size={20} /><span>{n}</span></div>
+        ))}
+      </div>
+      <p class="caption mt-6">Simple geometric line icons — consistent 1.5 stroke, minimal detail, neutral color, 14–20px. Arrows and chevrons carry directional actions.</p>
+    </section>
+
+    {/* ============================ 19. MOTION ==================== */}
+    <section class="section" id="motion">
+      <div class="grid-3">
+        <div><HeroScene preset="sculpture" /><h3 class="h3">Sculptural forms</h3><p>Shape, material, and depth.</p></div>
+        <div><HeroScene preset="network" /><h3 class="h3">Connected ideas</h3><p>Relationships made visible.</p></div>
+        <div><HeroScene preset="landscape" /><h3 class="h3">Layered terrain</h3><p>A softer, organic rhythm.</p></div>
+      </div>
+      <div class="section-head">
+        <span class="section-index">18</span>
+        <div><span class="eyebrow">Patterns</span><h2 class="h1 mt-2">Motion</h2></div>
+      </div>
+      <div class="grid-3">
+        <div class="panel motion-tile"><a class="link-arrow" href="#">Hover me <Icon name="arrow" size={14} class="arrow" /></a><p class="caption mt-3">Arrow translate · 200ms</p></div>
+        <div class="panel motion-tile"><button class="btn btn-secondary motion-btn">Background fade</button><p class="caption mt-3">Border + bg · 200ms</p></div>
+        <div class="panel motion-tile"><span class="reveal-line"></span><p class="caption mt-3">Section reveal · opacity + 4px rise</p></div>
+      </div>
+      <div class="meta-row mt-8">
+        <div class="cell"><span class="k">Duration</span><span class="v">150–250ms UI / 700ms entrance</span></div>
+        <div class="cell"><span class="k">Easing</span><span class="v">cubic-bezier(.2,.6,.2,1)</span></div>
+        <div class="cell"><span class="k">Reduced motion</span><span class="v">honored</span></div>
+      </div>
+      <p class="caption mt-4">Use a tailored Three.js scene and selected GSAP sequences. Continuous scenes have pause controls, pause offscreen, and respect <span class="mono">prefers-reduced-motion</span>.</p>
+    </section>
+
+    {/* ============================ 20. ACCESSIBILITY ==================== */}
+    <section class="section" id="accessibility">
+      <div class="section-head">
+        <span class="section-index">19</span>
+        <div><span class="eyebrow">Quality</span><h2 class="h1 mt-2">Accessibility</h2></div>
+      </div>
+      <div class="grid-2" style="align-items:start;">
+        <ul class="rule-list">
+          <li>WCAG AA contrast for text and interactive elements.</li>
+          <li>Visible keyboard focus — 3px accent ring, never removed.</li>
+          <li>Minimum 40px interactive targets.</li>
+          <li>Status shown with icon + text, not color alone.</li>
+          <li>Body text never below 14px.</li>
+        </ul>
+        <div class="panel" style="padding:var(--space-6)">
+          <span class="label">Focus & status demo</span>
+          <div class="row mt-4">
+            <button class="btn btn-primary" style="outline:2px solid var(--focus-outline);outline-offset:2px;">Focused</button>
+            <input class="input" style="width:auto;box-shadow:0 0 0 3px var(--focus-ring);border-color:var(--color-accent)" value="Focused input" />
+          </div>
+          <div class="row mt-6">
+            <span class="badge badge-success"><span class="status-dot"></span><Icon name="check" size={12} /> Success</span>
+            <span class="badge badge-warning"><span class="status-dot"></span><Icon name="alert" size={12} /> Warning</span>
+            <span class="badge badge-error"><span class="status-dot"></span><Icon name="x" size={12} /> Error</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ============================ 21. RESPONSIVE ==================== */}
+    <section class="section" id="responsive">
+      <div class="section-head">
+        <span class="section-index">20</span>
+        <div><span class="eyebrow">Quality</span><h2 class="h1 mt-2">Responsive behavior</h2></div>
+      </div>
+      <div class="device-row">
+        <div class="device">
+          <div class="bar">Desktop · 1280px · 12-col</div>
+          <div class="screen">
+            <div class="mini-nav"><strong>answer.cloud</strong><span class="caption">Docs · Pricing · API</span></div>
+            <div class="row" style="gap:8px"><div style="flex:2" class="mini-line accent"></div><div style="flex:1" class="mini-line"></div></div>
+            <div class="mini-line"></div><div class="mini-line short"></div>
+          </div>
+        </div>
+        <div class="device">
+          <div class="bar">Tablet · 768px · 6-col</div>
+          <div class="screen">
+            <div class="mini-nav"><strong>answer.cloud</strong><Icon name="menu" size={12} /></div>
+            <div class="mini-line accent"></div><div class="mini-line"></div><div class="mini-line short"></div>
+          </div>
+        </div>
+        <div class="device" style="max-width:220px">
+          <div class="bar">Mobile · 375px · 4-col</div>
+          <div class="screen">
+            <div class="mini-nav"><strong>a.cloud</strong><Icon name="menu" size={12} /></div>
+            <div class="mini-line accent"></div><div class="mini-line"></div><div class="mini-line"></div><div class="mini-line short"></div>
+          </div>
+        </div>
+      </div>
+      <p class="caption mt-6">Display typography scales fluidly on small screens; columns stack, alignment stays left, tables and technical panels scroll horizontally, and the grid density relaxes.</p>
+    </section>
+  </div>
+
+  {/* ============================ 22. COMPOSITIONS ==================== */}
+  <div class="container" id="compositions">
+    <section class="section is-open">
+      <div class="section-head">
+        <span class="section-index">21</span>
+        <div><span class="eyebrow">Application</span><h2 class="h1 mt-2">Example page compositions</h2></div>
+      </div>
+
+      <div class="comp gradient-section-transition">
+        <div class="comp-inner">
+          <span class="eyebrow">Documentation</span>
+          <h3 class="h2 mt-2">Answer Engine Optimization</h3>
+          <p class="body reading muted mt-3">Turn your content into answers customers get on your site and inside LLMs. This page pairs a reading column with a sticky spec sidebar — the editorial default for docs.</p>
+          <div class="comp-doc mt-6">
+            <div class="reading">
+              <h4 class="h4">How answers are served</h4>
+              <p class="body mt-2">Your published pages become answers — in your site's chat and inside ChatGPT, Gemini, and other LLMs, with citations back to you. <a class="link-inline" href="#">See the API →</a></p>
+              <div class="meta-row mt-6">
+                <div class="cell"><span class="k">Updated</span><span class="v">Jul 18, 2026</span></div>
+                <div class="cell"><span class="k">Read</span><span class="v">6 min</span></div>
+              </div>
+            </div>
+            <aside class="comp-aside">
+              <span class="label">On this page</span>
+              <a class="link-util mt-3" href="#" style="display:block">How answers are served</a>
+              <a class="link-util" href="#" style="display:block">llms.txt &amp; AI metadata</a>
+              <a class="link-util" href="#" style="display:block">Limits</a>
+            </aside>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp mt-8">
+        <div class="comp-inner">
+          <span class="eyebrow">Dashboard</span>
+          <h3 class="h2 mt-2">Deploy overview</h3>
+          <div class="metric-grid mt-6" style="border:1px solid var(--border-subtle)">
+            <div class="metric"><div class="k">Deploys today</div><div class="v">12</div><div class="ctx">of 200</div></div>
+            <div class="metric"><div class="k">Live pages</div><div class="v">1,204</div><div class="ctx trend-up"><Icon name="arrow-up-right" size={12} /> +36</div></div>
+            <div class="metric"><div class="k">Warnings</div><div class="v">2</div><div class="ctx">non-blocking</div></div>
+            <div class="metric"><div class="k">Chat</div><div class="v" style="font-size:20px;color:var(--success)">healthy</div><div class="ctx">312ms p50</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ============================ 23. FULL COMPONENT PREVIEW ==================== */}
+    <section class="section" id="preview">
+      <div class="section-head">
+        <span class="section-index">22</span>
+        <div><span class="eyebrow">Reference</span><h2 class="h1 mt-2">Full component preview</h2></div>
+      </div>
+      <div class="preview-wrap panel" style="padding:var(--space-8)">
+        <div class="row"><button class="btn btn-primary">Primary</button><button class="btn btn-secondary">Secondary</button><button class="btn btn-outline">Outline</button><button class="btn btn-text">Text</button><button class="btn btn-icon" aria-label="add"><Icon name="plus" size={16} /></button></div>
+        <div class="row mt-6"><span class="badge badge-success"><span class="status-dot"></span>Live</span><span class="badge badge-warning"><span class="status-dot"></span>Preview</span><span class="badge badge-error"><span class="status-dot"></span>Error</span><span class="badge badge-info"><span class="status-dot"></span>In review</span><span class="tag">tag</span><kbd>⌘</kbd><kbd>K</kbd></div>
+        <div class="grid-3 mt-8" style="align-items:start;">
+          <input class="input" placeholder="Text input" />
+          <label class="toggle"><input type="checkbox" checked /><span class="track"></span> Toggle</label>
+          <div class="progress" style="align-self:center"><span style="width:60%"></span></div>
+        </div>
+        <div class="grid-2 mt-8" style="align-items:start;">
+          <div class="alert alert-info">
+            <span class="alert-icon"><Icon name="info" size={18} /></span>
+            <div><span class="alert-title">Deploy queued</span><p>The answer engine layer — llms.txt, AI metadata, chat — regenerates once the build is live.</p></div>
+          </div>
+          <div class="alert alert-warning">
+            <span class="alert-icon"><Icon name="alert" size={18} /></span>
+            <div><span class="alert-title">2 non-blocking warnings</span><p>A CMS path collided with a static file — the static file wins.</p></div>
+          </div>
+        </div>
+        <div class="meta-row mt-8">
+          <div class="cell"><span class="k">Region</span><span class="v">us-east</span></div>
+          <div class="cell"><span class="k">Plan</span><span class="v">Answer Engine</span></div>
+          <div class="cell"><span class="k">Version</span><span class="v">1.0.0</span></div>
+        </div>
+      </div>
+      <p class="caption mt-6">Every component above is composed from the same tokens — one system, applied consistently.</p>
+    </section>
+  </div>
+
+  <MediaSystem />
+
+  {/* ============================ 32. AI CHAT EXPERIENCE ==================== */}
+  <div class="container">
+    <section class="section is-open" id="chat">
+      <div class="section-head">
+        <span class="section-index">32</span>
+        <div><span class="eyebrow">Product</span><h2 class="h1 mt-2">AI chat experience</h2></div>
+      </div>
+      <p class="lede">
+        answer.cloud injects a conversational chat widget into every site — the launcher, the answer
+        window, and the loading state. These are themed from the same tokens as
+        <span class="mono">public/assets/answercloud-chat.css</span>, the stylesheet the platform
+        loads into the host page and the chat iframe.
+      </p>
+
+      <div class="chat-showcase">
+        <div>
+          <span class="label">Launcher</span>
+          <div class="row mt-4" style="align-items:center;gap:var(--space-6)">
+            <button class="chat-launcher" type="button">
+              <span class="chat-launcher__icon"><Icon name="sparkle" size={16} /></span>
+              Ask a question
+            </button>
+            <button class="chat-launcher chat-launcher--icon" type="button" aria-label="Open chat">
+              <span class="chat-launcher__icon"><Icon name="message" size={20} /></span>
+            </button>
+          </div>
+          <p class="caption mt-4">
+            Floating action button — accent-deep fill, pill or circular, with a soft float shadow
+            (the one place shadows are allowed). Hover lifts 1px; focus shows the accent ring.
+          </p>
+
+          <span class="label mt-12" style="display:block">Loading state</span>
+          <div class="chat-loading-demo mt-4">
+            <div class="chat-status"><span class="spin" aria-hidden="true"></span> Searching your pages…</div>
+            <div class="chat-typing" role="status" aria-label="Assistant is typing">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+          <p class="caption mt-4">
+            A status line while retrieving, then an animated three-dot typing bubble while the answer
+            streams. Both honor <span class="mono">prefers-reduced-motion</span>.
+          </p>
+        </div>
+
+        <div class="chat-stage">
+          <div class="chat-window" role="dialog" aria-label="Ask acme chat">
+            <div class="chat-head">
+              <span class="chat-mark" aria-hidden="true"></span>
+              <span class="chat-id">
+                <span class="chat-title">Ask Acme</span>
+                <span class="chat-sub">Powered by answer.cloud</span>
+              </span>
+              <span class="chat-actions">
+                <button class="chat-iconbtn" type="button" aria-label="Clear conversation"><Icon name="refresh" size={16} /></button>
+                <button class="chat-iconbtn" type="button" aria-label="Close chat"><Icon name="x" size={16} /></button>
+              </span>
+            </div>
+
+            <div class="chat-body">
+              <div class="chat-msg chat-msg--user">Do you offer a free plan?</div>
+
+              <div class="chat-msg chat-msg--assistant">
+                <p>Yes. The <strong>Free</strong> plan includes on-site chat and up to 12 indexed pages
+                at no cost. Paid plans start at $100/mo and raise the limit to 500 pages.</p>
+                <div class="chat-refs">
+                  <a class="chat-ref" href="#"><span class="n">1</span> /pricing/</a>
+                  <a class="chat-ref" href="#"><span class="n">2</span> /docs/plans/</a>
+                </div>
+              </div>
+
+              <div class="chat-msg chat-msg--user">How do answers show up in ChatGPT?</div>
+
+              <div class="chat-status"><span class="spin" aria-hidden="true"></span> Searching your pages…</div>
+              <div class="chat-typing" role="status" aria-label="Assistant is typing">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+
+            <div class="chat-composer">
+              <input class="chat-input" type="text" placeholder="Ask a question…" aria-label="Ask a question" />
+              <button class="chat-send" type="button" aria-label="Send"><Icon name="send" size={16} /></button>
+            </div>
+            <div class="chat-attribution">Answers by <a href="#">answer.cloud</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  </SiteMotion>
+</StyleGuide>
+
+<style>
+  .hero {
+    padding-top: 84px;
+  }
+  .hero-grid {
+    position: relative;
+  }
+  .hero-inner {
+    padding-block: var(--space-20) var(--space-16);
+    position: relative;
+    z-index: 1;
+  }
+  .hero-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-12);
+    margin: 0;
+    padding-top: var(--space-6);
+  }
+  .hero-stats div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .hero-stats dt {
+    margin: 0;
+  }
+  .hero-stats dd {
+    margin: 0;
+    font-size: var(--fs-body-sm);
+    color: var(--text-primary);
+  }
+
+  .logo-tile {
+    aspect-ratio: 16 / 9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+    text-align: center;
+  }
+  .logo-lockup {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-h3);
+    letter-spacing: var(--tracking-tight);
+  }
+  .brand-mark-lg {
+    width: 22px;
+    height: 22px;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(135deg, #2e7bff 0%, #0058ef 100%);
+    display: inline-block;
+    flex: none;
+  }
+  .usage-rules,
+  .rule-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    font-size: var(--fs-body-sm);
+    color: var(--text-secondary);
+  }
+  .usage-rules li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+  .rule-list li {
+    padding-left: var(--space-4);
+    position: relative;
+  }
+  .rule-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 5px;
+    height: 5px;
+    background: var(--color-accent);
+    border-radius: 1px;
+  }
+  .ok { color: var(--success); }
+  .no { color: var(--error); }
+
+  .specimen {
+    font-size: 32px;
+    line-height: 1.1;
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .type-scale {
+    border-top: 1px solid var(--divider);
+  }
+  .type-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-6);
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid var(--divider);
+  }
+  .type-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    font-size: var(--fs-caption);
+    white-space: nowrap;
+    flex: none;
+  }
+
+  .grid-preview {
+    position: relative;
+    min-height: 206px;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+    background: var(--bg-gray);
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-4);
+  }
+  .grid-preview-label { position: relative; z-index: 1; }
+
+  .shadow-demo {
+    display: flex;
+    gap: var(--space-8);
+    flex-wrap: wrap;
+  }
+  .shadow-tile {
+    padding: var(--space-4) var(--space-6);
+    background: var(--bg-page);
+    border-radius: var(--radius-lg);
+    font-size: var(--fs-body-sm);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .nav-demo {
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius);
+  }
+  .nav-demo-bar {
+    display: flex;
+    align-items: center;
+    height: 64px;
+    padding-inline: var(--space-6);
+    font-size: var(--fs-body-sm);
+  }
+
+  .motion-tile {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .motion-btn:hover {
+    background: var(--interactive-subtle);
+    border-color: var(--color-accent);
+  }
+  .reveal-line {
+    display: block;
+    width: 100%;
+    height: 40px;
+    background: var(--gradient, var(--interactive-subtle));
+    background: var(--interactive-subtle);
+    border-left: 2px solid var(--color-accent);
+    animation: reveal 2.4s var(--ease) infinite alternate;
+  }
+  @keyframes reveal {
+    from { opacity: 0.4; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .comp {
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+  }
+  .comp-inner {
+    padding: var(--space-8);
+  }
+  .comp-doc {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: var(--space-8);
+    align-items: start;
+    border-top: 1px solid var(--divider);
+    padding-top: var(--space-6);
+  }
+  .comp-aside {
+    border-left: 1px solid var(--divider);
+    padding-left: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  @media (max-width: 720px) {
+    .comp-doc { grid-template-columns: 1fr; }
+    .comp-aside { border-left: 0; padding-left: 0; border-top: 1px solid var(--divider); padding-top: var(--space-4); }
+    .type-row { flex-direction: column; align-items: flex-start; gap: var(--space-2); }
+    .type-meta { align-items: flex-start; }
+  }
+  @media (max-width: 640px) {
+    .hero-inner { padding-block: var(--space-16) var(--space-12); }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6) var(--space-8);
+    }
+  }
+</style>
+
+<style>
+  .expressive-hero { padding: clamp(7rem, 12vw, 11rem) 0 4rem; overflow: clip; }
+  .expressive-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 2rem; align-items: center; }
+  .expressive-grid h1 { max-width: 12ch; line-height: 1.02; letter-spacing: -.055em; text-wrap: balance; }
+  @media (max-width: 760px) {
+    .expressive-grid { grid-template-columns: 1fr; }
+    .expressive-hero { padding-bottom: 1rem; }
+  }
+</style>
