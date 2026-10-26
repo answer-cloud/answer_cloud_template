@@ -1,0 +1,20 @@
+---
+interface Props {
+  size?: number;
+  class?: string;
+  color?: string;
+}
+const { size = 32, class: className = '', color = '#0058EF' } = Astro.props;
+---
+<svg
+  class={className}
+  width={size}
+  height={size}
+  viewBox="40 40 120 120"
+  fill="none"
+  aria-hidden="true"
+  focusable="false"
+>
+  <!-- Original answer.cloud spark geometry; only the white artboard is cropped. -->
+  <path d="M160 100C134.97 113.955 114.154 134.788 100 160C85.8463 134.783 65.0304 113.955 40 100C65.0304 86.0453 85.8463 65.2121 100 40C114.154 65.2167 134.97 86.0453 160 100Z" fill={color}/>
+</svg>

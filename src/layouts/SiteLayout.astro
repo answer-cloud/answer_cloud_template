@@ -1,0 +1,97 @@
+---
+import '../styles/tokens.css';
+import '../styles/site.css';
+import Icon from '../components/Icon.astro';
+import BrandMark from '../components/BrandMark.astro';
+import SiteMotion from '../components/SiteMotion.astro';
+interface Props { title: string; description: string; page?: 'home' | 'guide'; indexable?: boolean; }
+const { title, description, page = 'home', indexable = page !== 'guide' } = Astro.props;
+const origin = Astro.site;
+const canonical = origin ? new URL(Astro.url.pathname, origin).href : undefined;
+const social = origin ? new URL('/assets/social-preview.png', origin).href : '/assets/social-preview.png';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {!indexable && <meta name="robots" content="noindex,follow" />}
+    {!indexable && <meta name="answercloud:index" content="exclude" />}
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="SaaaaS" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta property="og:image" content={social} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="SaaaaS — a little less busywork, a lot more possibility." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={social} />
+    <meta name="twitter:image:alt" content="SaaaaS — a little less busywork, a lot more possibility." />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <link rel="preload" href="/assets/inter-latin-variable.woff2" as="font" type="font/woff2" crossorigin />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="wordmark" href="/" aria-label="SaaaaS home"><BrandMark class="brand-symbol" size={30} />SaaaaS<span class="brand-period">.</span></a>
+        <nav class="desktop-nav" aria-label="Main navigation">
+          <a href="/#features">Product</a><a href="/#how-it-works">How it works</a><a href="/#pricing">Pricing</a><a href="/style-guide/" aria-current={page === 'guide' ? 'page' : undefined}>Style guide</a>
+        </nav>
+        <div class="header-actions"><button class="button button-primary button-small" data-demo-open>Try the demo <Icon name="arrow" size={14}/></button><button class="menu-toggle button button-secondary button-small" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav"><Icon name="menu" size={20}/></button></div>
+      </div>
+      <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden><a href="/#features">Product</a><a href="/#how-it-works">How it works</a><a href="/#pricing">Pricing</a><a href="/style-guide/">Style guide</a></nav>
+    </header>
+    <SiteMotion><main id="main"><slot /></main></SiteMotion>
+    <footer class="site-footer">
+      <div class="container footer-main"><div class="footer-brand"><a class="wordmark" href="/"><BrandMark class="brand-symbol" size={30} />SaaaaS<span class="brand-period">.</span></a><p>A little space for your next big thing.</p></div><div class="footer-links"><div><span>Product</span><a href="/#features">Features</a><a href="/#how-it-works">How it works</a><a href="/#pricing">Pricing</a></div><div><span>Explore</span><a href="/style-guide/">Style guide</a><a href="/style-guide/#components">Components</a><button data-demo-open>Interactive demo <Icon name="arrow-up-right" size={13}/></button></div></div></div>
+      <div class="container footer-bottom"><span>© {new Date().getFullYear()} SaaaaS</span><span>A SaaS starter for Answer Cloud <span aria-hidden="true">↗</span></span><a href={page === 'guide' ? '#main' : '#top'}>Back to top ↑</a></div>
+    </footer>
+    <dialog class="demo-dialog" aria-labelledby="demo-title-1" data-aeo-exclude>
+      <div class="dialog-top"><span class="eyebrow">A QUICK LOOK AROUND</span><button class="icon-button" data-demo-close aria-label="Close demo"><Icon name="x" size={20}/></button></div>
+      <div class="demo-steps"><span class="active" data-step-indicator>01</span><span data-step-indicator>02</span><span data-step-indicator>03</span></div>
+      <section class="tour-step" data-tour-step><div class="tour-art tour-art-mint"><Icon name="grid" size={48}/><span>Your ideas. One home.</span></div><h2 id="demo-title-1">Make a little room for focus.</h2><p>Bring a project, a few ideas, and your favorite people together. This interactive preview shows how a SaaaaS workspace could feel.</p></section>
+      <section class="tour-step" data-tour-step hidden><div class="tour-art tour-art-lilac"><label class="tour-task"><input type="checkbox"/> Give your first idea a home <Icon name="check" size={18}/></label><label class="tour-task"><input type="checkbox"/> Make something worth sharing <Icon name="check" size={18}/></label></div><h2 id="demo-title-2">Small steps. Real progress.</h2><p>Try checking off a task. Clear priorities and simple interactions keep the work moving.</p></section>
+      <section class="tour-step" data-tour-step hidden><div class="tour-art tour-art-blue"><span class="avatar-group"><i>JL</i><i>AK</i><i>MS</i></span><span>Good work happens together.</span></div><h2 id="demo-title-3">Built around your people.</h2><p>Projects, updates, and next steps in one shared space. Your next product can start here.</p></section>
+      <div class="tour-controls"><button class="button button-secondary" data-tour-back disabled>Back</button><span class="muted" aria-live="polite" data-tour-count>1 of 3</span><button class="button button-primary" data-tour-next>Next <Icon name="arrow" size={16}/></button></div>
+    </dialog>
+    <script>
+      const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+      const mobile = document.querySelector<HTMLElement>('.mobile-nav');
+      const setMenu = (open: boolean) => { if (!toggle || !mobile) return; toggle.setAttribute('aria-expanded', String(open)); toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation'); mobile.hidden = !open; };
+      toggle?.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
+      mobile?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+      window.matchMedia('(min-width: 1024px)').addEventListener('change', e => { if (e.matches) setMenu(false); });
+      const dialog = document.querySelector<HTMLDialogElement>('.demo-dialog');
+      const steps = [...document.querySelectorAll<HTMLElement>('[data-tour-step]')];
+      const back = document.querySelector<HTMLButtonElement>('[data-tour-back]');
+      const next = document.querySelector<HTMLButtonElement>('[data-tour-next]');
+      let step = 0;
+      let trigger: HTMLElement | null = null;
+      const renderTour = () => {
+        dialog?.setAttribute('aria-labelledby', `demo-title-${step + 1}`);
+        steps.forEach((el, i) => el.hidden = i !== step);
+        document.querySelectorAll('[data-step-indicator]').forEach((el, i) => el.classList.toggle('active', i === step));
+        if (back) back.disabled = step === 0;
+        if (next) next.textContent = step === 2 ? 'All done ✓' : 'Next →';
+        const count = document.querySelector('[data-tour-count]'); if(count) count.textContent = `${step + 1} of 3`;
+      };
+      document.querySelectorAll<HTMLElement>('[data-demo-open]').forEach(button => button.addEventListener('click', () => { trigger = button; step = 0; renderTour(); dialog?.showModal(); }));
+      document.querySelector('[data-demo-close]')?.addEventListener('click', () => dialog?.close());
+      back?.addEventListener('click', () => { step = Math.max(0, step - 1); renderTour(); });
+      next?.addEventListener('click', () => { if(step === 2) dialog?.close(); else { step++; renderTour(); } });
+      dialog?.addEventListener('close', () => { trigger?.focus(); });
+      dialog?.addEventListener('click', e => { if (e.target === dialog) { const r = dialog.getBoundingClientRect(); if(e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) dialog.close(); } });
+    </script>
+  </body>
+</html>

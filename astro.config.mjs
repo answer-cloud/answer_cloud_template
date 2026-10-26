@@ -1,13 +1,10 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
+import { siteUrl } from './scripts/site-url.mjs';
 
-// Static output only — answer.cloud serves the built HTML from dist/.
 export default defineConfig({
+  site: siteUrl(process.env.SITE_URL),
   output: 'static',
-  server: {
-    port: 4331,
-  },
-  build: {
-    format: 'directory',
-  },
+  devToolbar: { enabled: false },
+  build: { format: 'directory' },
+  server: { port: 4332, host: '127.0.0.1' },
 });

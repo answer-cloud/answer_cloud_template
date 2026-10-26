@@ -1,227 +1,51 @@
-/* =========================================================================
-   answer.cloud — chat widget theme
-   Derived from the site design system (tokens.css). Loaded into BOTH the host
-   page (#llmo-chat-button, #llmo-chat-iframe) and the chat iframe
-   (#llmo-chat-widget). Every rule is scoped beneath one of those three IDs so
-   the host site is never restyled.
-   ========================================================================= */
-
-/* ---------- Launcher button (host page) ---------------------------------- */
-#llmo-chat-button {
-  font-family: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Helvetica, Arial, sans-serif !important;
-  background: #0058ef !important;
-  color: #ffffff !important;
-  border: 1px solid rgba(26, 27, 28, 0.16) !important;
-  border-radius: 8px !important;
-  box-shadow: 0 1px 2px rgba(26, 27, 28, 0.08), 0 8px 24px rgba(26, 27, 28, 0.12) !important;
-  font-weight: 500 !important;
-  font-size: 14px !important;
-  letter-spacing: -0.005em !important;
-  transition: background 200ms cubic-bezier(0.2, 0.6, 0.2, 1),
-    transform 200ms cubic-bezier(0.2, 0.6, 0.2, 1) !important;
+/* SaaaaS standalone chat theme. Every selector stays widget-scoped. */
+@font-face{font-family:"SaaaaS Inter";src:url("./inter-latin-variable.woff2") format("woff2");font-style:normal;font-weight:100 900;font-display:swap;unicode-range:U+0000,U+0020-007E,U+00A0-00AC,U+00AE-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+2000-200B,U+2010-2027,U+202F-2055,U+2057,U+205F,U+20AC,U+2122,U+2190-2199,U+21B5,U+2212,U+2318,U+2600,U+2713,U+FEFF}
+@font-face{font-family:"SaaaaS Inter";src:url("./inter-latin-ext-variable.woff2") format("woff2");font-style:normal;font-weight:100 900;font-display:swap;unicode-range:U+0100-0130,U+0132-0148,U+014A-0151,U+0154-01C3,U+01C5-0254,U+0256-027B,U+027E-0284,U+0286-0290,U+0292-02A4,U+02A6-02BA,U+02BD-02C5,U+02C7-02D9,U+02DB,U+02DD-0303,U+0306-0307,U+0309-030A,U+030C,U+030F,U+0313,U+0315,U+031B,U+0323,U+0326-0328,U+032C,U+0337-0338,U+0342-0343,U+0346-036F,U+1D00,U+1D0D,U+1D1B,U+1D43,U+1D47-1D49,U+1D4D,U+1D4F-1D50,U+1D52,U+1D56-1D58,U+1D5B,U+1D62-1D65,U+1D9C,U+1DA0,U+1DBB,U+1DBF,U+1E00-1E9B,U+1E9D-1EFF,U+20A0-20AB,U+20AD-20AF,U+20B1-20B5,U+20B8-20BA,U+20BC-20C0,U+2113,U+2C7C,U+2C7F,U+A7FF}
+@font-face{font-family:"SaaaaS Inter";src:url("./inter-variable.woff2") format("woff2");font-style:normal;font-weight:100 900;font-display:swap;unicode-range:U+0374-0376,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03D7,U+03DC-03DD,U+03F0-03F6,U+03F9-03FA,U+03FC-0479,U+0480-049D,U+04A0-04FF,U+052F,U+0E3F,U+1DC0-1DF5,U+1DFC-1DFF,U+1F00-1F15,U+1F18-1F1D,U+1F20-1F45,U+1F48-1F4D,U+1F50-1F57,U+1F59,U+1F5B,U+1F5D,U+1F5F-1F7D,U+1F80-1FB4,U+1FB6-1FC4,U+1FC6-1FD3,U+1FD6-1FDB,U+1FDD-1FEF,U+1FF2-1FF4,U+1FF6-1FFE,U+2070-2071,U+2074-208E,U+2090-209C,U+20DB-20DE,U+20E8,U+20F0,U+2100-2101,U+2103,U+2105-2106,U+2109,U+2116-2117,U+211E-2121,U+2126,U+212A-212B,U+212E,U+2132,U+213B,U+214D,U+2150-217F,U+2183-2186,U+2189,U+21A9-21AA,U+21B0-21B1,U+21B3-21B4,U+21BA-21BB,U+21D0,U+21D2,U+21D4,U+21DE-21DF,U+21E4-21E5,U+21E7,U+21EA,U+2202,U+2205-2206,U+220F,U+2211,U+221A,U+221E,U+222B,U+2236,U+2248,U+2260,U+2264-2265,U+2295-2298,U+2303-2305,U+2325-2327,U+232B,U+2380,U+2387,U+238B,U+23CE-23CF,U+2423,U+2460-2468,U+24B6-24CF,U+24EA,U+25A0-25A2,U+25AA,U+25B2-25B3,U+25B6-25B7,U+25BA-25BD,U+25C0-25C1,U+25C4-25C7,U+25CA-25CB,U+25CF,U+25E6,U+25EF,U+2605-2606,U+263C,U+2661,U+2665,U+266A-266B,U+26A0,U+2717,U+2756,U+2764,U+2780-2788,U+27EF,U+27F5-27FA,U+2913,U+2A38,U+2B06,U+2B12-2B13,U+2B1C,U+2B24,U+2DFF,U+2E18,U+A69F,U+A92E,U+E000,U+E002-E05E,U+E06A-E0BD,U+E0C8-E0CC,U+E0DC-E0E6,U+E0F3-E0F5,U+E106,U+E109-E10A,U+E10C-E10F,U+E111-E113,U+E117-E118,U+E121-E122,U+E124,U+E12A-E15E,U+E163,U+E1C3,U+E1D2-E1DF,U+E1E1-E2DC,U+EE01-EE07,U+EE09-EE0A,U+EE0C-EE12,U+EE14,U+EE17,U+EE1D-EE45,U+EE47-EE84,U+EE87-EED6,U+EED8-EEE1,U+F6C3,U+1F12F-1F149,U+1F16A-1F16B,U+1F850,U+1F852}
+#llmo-chat-button,#llmo-chat-iframe,#llmo-chat-widget{
+ --ac-chat-font-family:"SaaaaS Inter",Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+ --ac-chat-font-size:16px;--ac-chat-surface:#fff;--ac-chat-text:#171717;--ac-chat-secondary-text:#343434;--ac-chat-muted:#666;--ac-chat-panel:#f8f8f8;--ac-chat-border:#e8e8e8;--ac-chat-accent:#171717;--ac-chat-on-accent:#fff;--ac-chat-focus-ring:#526a9d;--ac-chat-launcher-text:#171717;--ac-chat-icon-color:#171717;--ac-chat-link-color:#171717;--ac-chat-user-surface:#f0edf8;--ac-chat-assistant-surface:transparent;--ac-chat-input-surface:#fff;--ac-chat-control-surface:#f8f8f8;--ac-chat-send-background:#171717;--ac-chat-send-color:#fff;--ac-chat-code-surface:#f8f8f8;--ac-chat-radius:16px;--ac-chat-message-radius:10px;--ac-chat-launcher-radius:12px;--ac-chat-launcher-width:min(260px,calc(100vw - 32px));--ac-chat-launcher-shadow:0 4px 20px #19273812;--ac-chat-offset-right:16px;--ac-chat-offset-bottom:16px;font-family:var(--ac-chat-font-family)
 }
-#llmo-chat-button:hover {
-  background: #0049c4 !important;
-  transform: translateY(-1px);
-}
-#llmo-chat-button:focus-visible {
-  outline: 2px solid #2e7bff !important;
-  outline-offset: 2px !important;
-}
-
-/* ---------- Iframe frame (host page) ------------------------------------- */
-#llmo-chat-iframe {
-  border: 1px solid rgba(26, 27, 28, 0.16) !important;
-  border-radius: 8px !important;
-  box-shadow: 0 4px 12px rgba(26, 27, 28, 0.10), 0 24px 64px rgba(26, 27, 28, 0.18) !important;
-  background: #ffffff !important;
-}
-
-/* ---------- Widget interior (inside the iframe) -------------------------- */
-#llmo-chat-widget {
-  --ac-accent: #2e7bff;
-  --ac-accent-deep: #0058ef;
-  --ac-ink: #1a1b1c;
-  --ac-muted: #667085;
-  --ac-border: rgba(26, 27, 28, 0.16);
-  --ac-subtle: rgba(26, 27, 28, 0.10);
-  --ac-surface: #ffffff;
-  --ac-inset: #f7f8f9;
-
-  font-family: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Helvetica, Arial, sans-serif !important;
-  color: var(--ac-ink) !important;
-  background: var(--ac-surface) !important;
-  font-size: 15px !important;
-  line-height: 1.55 !important;
-}
-
-/* Header */
-#llmo-chat-widget header,
-#llmo-chat-widget .llmo-header {
-  background: #ffffff !important;
-  color: var(--ac-ink) !important;
-  border-bottom: 1px solid var(--ac-border) !important;
-  font-weight: 600 !important;
-  letter-spacing: -0.01em !important;
-}
-
-/* Controls: send / close / clear */
-#llmo-chat-widget button {
-  font-family: inherit !important;
-  border-radius: 4px !important;
-  transition: background 200ms cubic-bezier(0.2, 0.6, 0.2, 1),
-    color 200ms cubic-bezier(0.2, 0.6, 0.2, 1) !important;
-}
-#llmo-chat-widget button[type="submit"],
-#llmo-chat-widget .llmo-send {
-  background: var(--ac-accent-deep) !important;
-  color: #ffffff !important;
-  border: 1px solid transparent !important;
-  font-weight: 500 !important;
-}
-#llmo-chat-widget button[type="submit"]:hover,
-#llmo-chat-widget .llmo-send:hover {
-  background: #0049c4 !important;
-}
-#llmo-chat-widget button:focus-visible {
-  outline: 2px solid var(--ac-accent) !important;
-  outline-offset: 2px !important;
-}
-
-/* Composer input */
-#llmo-chat-widget input[type="text"],
-#llmo-chat-widget textarea,
-#llmo-chat-widget .llmo-input {
-  font-family: inherit !important;
-  font-size: 15px !important;
-  color: var(--ac-ink) !important;
-  background: var(--ac-surface) !important;
-  border: 1px solid var(--ac-border) !important;
-  border-radius: 4px !important;
-}
-#llmo-chat-widget input[type="text"]:focus,
-#llmo-chat-widget textarea:focus,
-#llmo-chat-widget .llmo-input:focus {
-  outline: none !important;
-  border-color: var(--ac-accent) !important;
-  box-shadow: 0 0 0 3px rgba(46, 123, 255, 0.45) !important;
-}
-
-/* Messages */
-#llmo-chat-widget .llmo-message-user,
-#llmo-chat-widget .user-message {
-  background: rgba(46, 123, 255, 0.10) !important;
-  color: var(--ac-ink) !important;
-  border: 1px solid rgba(46, 123, 255, 0.20) !important;
-  border-radius: 8px !important;
-}
-#llmo-chat-widget .llmo-message-assistant,
-#llmo-chat-widget .assistant-message {
-  background: var(--ac-inset) !important;
-  color: var(--ac-ink) !important;
-  border: 1px solid var(--ac-subtle) !important;
-  border-radius: 8px !important;
-}
-
-/* Answer typography */
-#llmo-chat-widget h1,
-#llmo-chat-widget h2,
-#llmo-chat-widget h3 {
-  letter-spacing: -0.01em !important;
-  font-weight: 600 !important;
-}
-#llmo-chat-widget h2 { font-size: 20px !important; }
-#llmo-chat-widget h3 { font-size: 17px !important; }
-#llmo-chat-widget a {
-  color: var(--ac-accent-deep) !important;
-  border-bottom: 1px solid rgba(46, 123, 255, 0.35) !important;
-  text-decoration: none !important;
-}
-#llmo-chat-widget a:hover {
-  border-bottom-color: var(--ac-accent-deep) !important;
-}
-#llmo-chat-widget code,
-#llmo-chat-widget pre {
-  font-family: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, Consolas, monospace !important;
-  font-size: 13px !important;
-  background: var(--ac-inset) !important;
-  border: 1px solid var(--ac-subtle) !important;
-  border-radius: 4px !important;
-}
-
-/* References / citations */
-#llmo-chat-widget .llmo-references,
-#llmo-chat-widget .references {
-  border-top: 1px solid var(--ac-subtle) !important;
-  color: var(--ac-muted) !important;
-  font-size: 13px !important;
-}
-
-/* Loading state — animated typing indicator */
-#llmo-chat-widget .llmo-typing,
-#llmo-chat-widget .llmo-loading,
-#llmo-chat-widget .typing-indicator {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 5px !important;
-  padding: 10px 12px !important;
-  background: var(--ac-inset) !important;
-  border: 1px solid var(--ac-subtle) !important;
-  border-radius: 10px 10px 10px 2px !important;
-}
-#llmo-chat-widget .llmo-typing span,
-#llmo-chat-widget .llmo-loading span,
-#llmo-chat-widget .typing-dot {
-  width: 7px !important;
-  height: 7px !important;
-  border-radius: 50% !important;
-  background: var(--ac-accent) !important;
-  animation: llmo-typing 1.2s ease-in-out infinite !important;
-}
-#llmo-chat-widget .llmo-typing span:nth-child(2),
-#llmo-chat-widget .llmo-loading span:nth-child(2),
-#llmo-chat-widget .typing-dot:nth-child(2) {
-  animation-delay: 0.15s !important;
-}
-#llmo-chat-widget .llmo-typing span:nth-child(3),
-#llmo-chat-widget .llmo-loading span:nth-child(3),
-#llmo-chat-widget .typing-dot:nth-child(3) {
-  animation-delay: 0.3s !important;
-}
-@keyframes llmo-typing {
-  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-  30% { transform: translateY(-4px); opacity: 1; }
-}
-
-/* Attribution — preserve, keep readable */
-#llmo-chat-widget .llmo-attribution,
-#llmo-chat-widget .powered-by {
-  color: var(--ac-muted) !important;
-  font-size: 11px !important;
-}
-
-/* Responsive frame */
-@media (max-width: 640px) {
-  #llmo-chat-iframe {
-    border-radius: 0 !important;
-  }
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  #llmo-chat-button,
-  #llmo-chat-widget button {
-    transition: none !important;
-  }
-  #llmo-chat-button:hover {
-    transform: none;
-  }
-  #llmo-chat-widget .llmo-typing span,
-  #llmo-chat-widget .llmo-loading span,
-  #llmo-chat-widget .typing-dot {
-    animation: none !important;
-    opacity: 0.6 !important;
-  }
-}
+/* The visible invitation is the input placeholder, not the outer wrapper. */
+#llmo-chat-button{background:transparent!important;border:0!important;box-shadow:none!important;max-width:calc(100vw - 32px)}
+#llmo-chat-button .llmo-chat-button-input{min-height:48px;font-family:var(--ac-chat-font-family)!important;font-size:14px!important;font-weight:500;background:#fff!important;color:#171717!important;border:1px solid #e8e8e8!important;border-radius:12px!important;box-shadow:0 4px 20px #19273812!important;caret-color:#171717}
+#llmo-chat-button .llmo-chat-button-input::placeholder{color:#171717!important;opacity:1!important}
+#llmo-chat-button .llmo-chat-button-icon{color:#171717!important}
+#llmo-chat-button:hover .llmo-chat-button-input{border-color:#c8c8c8!important}
+#llmo-chat-button:focus-within .llmo-chat-button-input{outline:2px solid #526a9d!important;outline-offset:3px}
+#llmo-chat-iframe{--ac-chat-frame-width:min(420px,calc(100vw - 32px));--ac-chat-frame-height:min(640px,calc(100dvh - 32px));--ac-chat-mobile-width:calc(100vw - 16px);--ac-chat-mobile-height:min(640px,calc(100dvh - 16px));--ac-chat-frame-padding:0px;--ac-chat-frame-shadow:0 16px 48px #19273826;border:1px solid #e8e8e8!important;border-radius:16px!important;background:#fff}
+#llmo-chat-widget{--font-sans:var(--ac-chat-font-family);--bg:#fff;--ink:#171717;--ink-mid:#343434;--muted:#666;--panel:#f8f8f8;--ring:#526a9d;--brand:#171717;--accent:#171717;--accent-deep:#171717;--accent-soft:#f0edf8;color:#171717;background:#fff;font:16px/1.6 var(--ac-chat-font-family)}
+#llmo-chat-widget .llmo-chat-popup{display:grid;grid-template-rows:minmax(0,1fr) auto;height:100%;min-height:0;background:#fff}
+#llmo-chat-widget .llmo-messages{overflow-y:auto;min-height:0;padding:64px 20px 20px;overscroll-behavior:contain}
+#llmo-chat-widget #llmo-messages{display:flex;flex-direction:column;gap:16px;min-width:0}
+/* Reset both legacy roles before applying compact user bubbles. */
+#llmo-chat-widget .llmo-message.llmo-user,#llmo-chat-widget .llmo-message.llmo-ai{float:none!important;position:static!important;margin:0!important;min-width:0;min-height:0;max-width:100%;padding:0!important;color:#171717;font-size:16px;line-height:1.6;overflow-wrap:anywhere}
+#llmo-chat-widget .llmo-message.llmo-user{align-self:flex-end;max-width:85%;padding:8px 12px!important;border:0!important;border-radius:10px;background:#f0edf8!important;box-shadow:none!important}
+#llmo-chat-widget .llmo-message.llmo-ai{align-self:stretch;background:transparent!important;border:0!important;box-shadow:none!important}
+#llmo-chat-widget .llmo-markdown p{margin:0 0 12px}
+#llmo-chat-widget .llmo-markdown p:last-child{margin-bottom:0}
+#llmo-chat-widget .llmo-markdown h1,#llmo-chat-widget .llmo-markdown h2,#llmo-chat-widget .llmo-markdown h3{font-size:18px;line-height:1.35;font-weight:500;letter-spacing:-.02em}
+#llmo-chat-widget .llmo-markdown a,#llmo-chat-widget .llmo-message-references a{color:#171717;text-underline-offset:3px;text-decoration:underline}
+#llmo-chat-widget .llmo-markdown img{max-width:100%;height:auto}
+#llmo-chat-widget .llmo-markdown pre,#llmo-chat-widget .llmo-markdown table{display:block;max-width:100%;overflow-x:auto}
+#llmo-chat-widget .llmo-markdown pre{padding:12px;border:1px solid #e8e8e8;border-radius:6px;background:#f8f8f8}
+#llmo-chat-widget .llmo-markdown code{font-family:"SFMono-Regular",Consolas,monospace;font-size:13px}
+#llmo-chat-widget .llmo-message-references{margin-top:12px;font-size:13px;color:#666}
+/* Only the transcript scrolls; the composer remains in the grid's bottom row. */
+#llmo-chat-widget .composer-wrap{position:relative!important;inset:auto!important;padding:12px 16px max(16px,env(safe-area-inset-bottom));background:#fff;border-top:1px solid #e8e8e8}
+#llmo-chat-widget .composer{position:relative!important;inset:auto!important;display:flex;align-items:flex-end;margin:0;padding:4px;background:#fff;border:1px solid #d7d7d7;border-radius:10px}
+#llmo-chat-widget .chat_textarea{min-width:0;min-height:44px;max-height:144px;flex:1;overflow-y:auto;padding:9px 8px;font:16px/1.6 var(--ac-chat-font-family);color:#171717;background:transparent;caret-color:#171717;overflow-wrap:anywhere}
+#llmo-chat-widget .chat_textarea:empty::before{color:#666!important;opacity:1}
+#llmo-chat-widget .composer:focus-within{outline:2px solid #526a9d;outline-offset:2px}
+#llmo-chat-widget .chat_send,#llmo-chat-widget .llmo-close,#llmo-chat-widget .llmo-clear-chat{min-width:44px;min-height:44px;border-radius:8px}
+#llmo-chat-widget .chat_send{position:relative!important;inset:auto!important;flex:0 0 44px;color:#fff;background:#171717;border:0}
+#llmo-chat-widget .chat_send:hover{background:#343434}
+#llmo-chat-widget .chat_send:disabled{opacity:.45;cursor:not-allowed}
+#llmo-chat-widget .llmo-close,#llmo-chat-widget .llmo-clear-chat{top:12px;color:#171717;background:#f8f8f8;border:1px solid #e8e8e8;box-shadow:none}
+#llmo-chat-widget .llmo-close{right:12px}
+#llmo-chat-widget .llmo-clear-chat{right:64px}
+#llmo-chat-widget button:focus-visible,#llmo-chat-widget a:focus-visible{outline:2px solid #526a9d;outline-offset:3px}
+#llmo-chat-widget .ai-icon{color:#666;font-size:11px;text-decoration:none;border:0;background:transparent}
+#llmo-chat-widget .llmo-loader{color:#666}
+@media(max-width:640px){#llmo-chat-iframe{border-radius:12px!important}#llmo-chat-widget .llmo-messages{padding-inline:16px}}
+@media(prefers-reduced-motion:reduce){#llmo-chat-button,#llmo-chat-button .llmo-chat-button-input,#llmo-chat-widget button,#llmo-chat-widget .llmo-loader,#llmo-chat-widget .llmo-message,#llmo-chat-widget .llmo-chat-popup{animation:none!important;transition:none!important}}
